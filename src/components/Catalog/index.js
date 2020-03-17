@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
-import Card from "../Card";
+import LinkCard from "../LinkCard";
 import Pagination from "../Pagination";
 import styles from "./catalog.module.css";
 
 //
-const initialProps = {
-  name: "shoes",
-  image:
-    "https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2017/01/30/14857785587205.jpg"
-};
-
-const arr = Array(5).fill(initialProps);
+const arr = Array(5).fill("");
 //
 
 function renderProducts(prods) {
   return prods.map(prod => {
-    return <Card {...prod} />;
+    return <LinkCard {...prod} />;
   });
 }
 
