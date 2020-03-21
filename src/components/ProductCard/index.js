@@ -13,7 +13,7 @@ export default function ProductCard({ image, name }) {
   name = name ? name : initialProps.name;
   return (
     <Card>
-      <img alt="" src={image} />
+      <img alt="product description" src={image} />
       <p className={styles.name}>{name}</p>
     </Card>
   );

@@ -3,21 +3,23 @@ import Card from "../Card";
 import styles from "./questions.module.css";
 import "./styles.css";
 
-function Question({ quest, ans }) {
-  function TextBlock({ user, content, type }) {
-    type =
-      type === "ans"
-        ? "text-block text-block--yellow text-block--right"
-        : "text-block";
+function TextBlock({ user, content, type }) {
+  type =
+    type === "ans"
+      ? "text-block text-block--yellow text-block--right"
+      : "text-block";
 
-    return (
-      <div className={type}>
-        <div className={styles.user}>{user}</div>
-        <div className={styles.content}>{content}</div>
+  return (
+    <div className={type}>
+      <div aria-label="user" className={styles.user}>
+        {user}
       </div>
-    );
-  }
+      <p className={styles.content}>{content}</p>
+    </div>
+  );
+}
 
+function Question({ quest, ans }) {
   return (
     <>
       <TextBlock type={"quest"} {...quest} />

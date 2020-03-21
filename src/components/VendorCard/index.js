@@ -16,7 +16,7 @@ export default function VendorCard({ name, image, branding }) {
 
   return (
     <Card>
-      <img src={image} alt="vendor image" className={styles.image} />
+      <img src={image} alt="vendor logo" className={styles.image} />
       <h2>{name}</h2>
       <p>{branding}</p>
     </Card>
