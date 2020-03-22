@@ -1,3 +1,5 @@
+import { userService } from "../services/user.service";
+
 // constants
 const LOGIN = "LOGIN";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -21,10 +23,16 @@ export default function reducer(state = initialData, action) {
       return { ...state, fetching: true };
 
     case LOGIN_SUCCESS:
-      return { ...state, fetching: false, ...action.payload, loggedIn: true };
+      return {
+        ...state,
+        fetching: false,
+        ...action.payload,
+        loggedIn: true,
+        error: null
+      };
 
     case LOGIN_ERROR:
-      return { ...state, fetching: false, error: action.payload };
+      return { ...state, fetching: false, error: action.payload.error };
     default:
       return state;
   }
@@ -32,10 +40,29 @@ export default function reducer(state = initialData, action) {
 
 // actions
 
-export let doLoginAction = () => dispatch => {
+export let doLoginAction = (username, password) => (dispatch) => {
   dispatch({
     type: LOGIN
   });
 
-  return;
+  userService
+    .login(username, password)
+    .then((user) => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: user
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: LOGIN_ERROR, payload: err });
+    });
+};
+
+export let doLogoutAction = () => (dispatch) => {
+  userService.logout().then(
+    dispatch({
+      type: LOG_OUT
+    })
+  );
 };

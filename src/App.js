@@ -5,13 +5,17 @@ import Routes from "./Routes";
 
 function App() {
   return (
-    <main>
-      <nav className="nav-bar">
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/products/1">Products</NavLink>
-      </nav>
-      <Routes />
-    </main>
+    <>
+      <main>
+        <nav className="nav-bar">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/products/1">Products</NavLink>
+          <NavLink to="/login">Login</NavLink>
+        </nav>
+        <Routes />
+      </main>
+      <footer className="footer">clon meli @gaston casini</footer>
+    </>
   );
 }
 
