@@ -1,0 +1,8 @@
+// variables
+$font: Lora, Georgia, serif;
+// mixins
+@mixin big-screens {
+  @media (min-width: 499px) {
+    @content;
+  }
+}
