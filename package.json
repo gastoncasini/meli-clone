@@ -18,7 +18,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sass": "node-sass --ouput-style compressed  -o ./src ./src",
+    "watch:css": "onchange ./src/**/**/**.scss -- npm run sass"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,6 +38,7 @@
     ]
   },
   "devDependencies": {
-    "faker": "^4.1.0"
+    "faker": "^4.1.0",
+    "node-sass": "^4.13.1"
   }
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "../Card";
-import styles from "./vendor.module.css";
 
 export default function VendorCard({ name, image, branding }) {
   const initialProps = {
@@ -16,7 +15,7 @@ export default function VendorCard({ name, image, branding }) {
 
   return (
     <Card>
-      <img src={image} alt="vendor logo" className={styles.image} />
+      <img src={image} alt="vendor logo" className={""} />
       <h2>{name}</h2>
       <p>{branding}</p>
     </Card>

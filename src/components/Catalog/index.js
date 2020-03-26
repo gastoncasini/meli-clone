@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import LinkCard from "../LinkCard";
 import Pagination from "../Pagination";
 import styles from "./catalog.module.css";
