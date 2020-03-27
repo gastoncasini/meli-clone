@@ -4,16 +4,13 @@
   padding: 0.5em;
   margin: 0.25em 0;
   border-radius: 1em;
-  background-color: rgb(235, 235, 235);
+  background-color: #ebebeb;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-around;
-}
+  justify-content: space-around; }
 
 .text-block--yellow {
-  background-color: rgb(253, 242, 145);
-}
+  background-color: #fdf291; }
 
 .text-block--right {
-  text-align: right;
-}
+  text-align: right; }

@@ -1,0 +1,13 @@
+.product {
+  margin: 0.5em 0;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap; }
+  .product__price {
+    color: #303030;
+    font-size: 1.4em;
+    text-align: center;
+    width: 50%; }
+  .product__discount {
+    color: #11a98b;
+    width: 50%; }

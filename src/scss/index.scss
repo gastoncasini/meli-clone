@@ -1,8 +1,8 @@
 @import "./partials/_normalize.scss";
-@import "./partials/global.scss";
+@import "./partials/_global.scss";
 
 html,
 body {
-  font-family: $font;
-  overflow: hidden;
+  font-family: sans-serif;
+  background-color: #eeeeee;
 }

@@ -1,0 +1,59 @@
+/* normalize */
+html,
+body,
+p,
+h3,
+h2,
+h1,
+ul,
+fieldset,
+button {
+  margin: 0; }
+
+h2,
+h1 {
+  font-weight: 400; }
+
+input,
+select,
+button,
+fieldset {
+  border: none;
+  outline: none; }
+
+button {
+  background: none; }
+
+button,
+ul,
+label,
+fieldset {
+  padding: 0; }
+
+a {
+  text-decoration: none; }
+
+a:visited {
+  color: initial; }
+
+ul {
+  list-style-type: none; }
+
+hr {
+  border-style: solid; }
+
+abbr {
+  text-decoration: none; }
+
+fieldset {
+  padding: 0; }
+
+legend {
+  position: absolute;
+  z-index: -1;
+  visibility: hidden; }
+
+html,
+body {
+  font-family: sans-serif;
+  background-color: #eeeeee; }

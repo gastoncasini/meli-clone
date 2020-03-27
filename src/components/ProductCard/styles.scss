@@ -1,0 +1,25 @@
+$font-color-1: rgb(48, 48, 48);
+$discount: rgb(17, 169, 139);
+.product {
+  margin: 0.5em 0;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+
+  &__price {
+    color: $font-color-1;
+    font-size: 1.4em;
+    text-align: center;
+    width: 50%;
+  }
+  &__discount {
+    color: $discount;
+    width: 50%;
+  }
+  &__vendor {
+  }
+  &__location {
+  }
+  &__desc {
+  }
+}
