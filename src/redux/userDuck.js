@@ -40,29 +40,40 @@ export default function reducer(state = initialData, action) {
 
 // actions
 
-export let doLoginAction = (username, password) => (dispatch) => {
+export let doLoginAction = (username, password) => dispatch => {
   dispatch({
     type: LOGIN
   });
 
   userService
     .login(username, password)
-    .then((user) => {
+    .then(user => {
       dispatch({
         type: LOGIN_SUCCESS,
         payload: user
       });
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
       dispatch({ type: LOGIN_ERROR, payload: err });
     });
 };
 
-export let doLogoutAction = () => (dispatch) => {
+export let doLogoutAction = () => dispatch => {
   userService.logout().then(
     dispatch({
       type: LOG_OUT
     })
   );
+};
+
+export let doRestoreSessionAction = () => dispatch => {
+  let user = localStorage.getItem("user");
+  user = JSON.parse(user);
+  if (user) {
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: user
+    });
+  }
 };

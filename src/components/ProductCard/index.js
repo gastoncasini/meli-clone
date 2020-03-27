@@ -1,20 +1,16 @@
 import React from "react";
 import Card from "../Card";
-import styles from "../Card/card.module.css";
+import "./styles.css";
 
-export default function ProductCard({ image, name }) {
-  const initialProps = {
-    name: "shoes",
-    image:
-      "https://e00-expansion.uecdn.es/assets/multimedia/imagenes/2017/01/30/14857785587205.jpg"
-  };
-
-  image = image ? image : initialProps.image;
-  name = name ? name : initialProps.name;
+export default function ProductCard({ image, name, price, discount }) {
   return (
     <Card>
       <img alt="product description" src={image} />
-      <p className={styles.name}>{name}</p>
+      <div className="product">
+        <p className="product__price">{`$${price}`}</p>
+        <p className="product__discount">{discount ? discount : ""}</p>
+        <p className="product__desc">{name}</p>
+      </div>
     </Card>
   );
 }

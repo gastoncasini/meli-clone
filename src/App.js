@@ -1,16 +1,17 @@
 import React from "react";
-import "./App.css";
+import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import Routes from "./Routes";
+import "./App.css";
 
-function App() {
+function App({ loggedIn }) {
   return (
     <>
       <main>
         <nav className="nav-bar">
           <NavLink to="/">Home</NavLink>
           <NavLink to="/products/1">Products</NavLink>
-          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/login">{loggedIn ? "logout" : "login"}</NavLink>
         </nav>
         <Routes />
       </main>
@@ -19,4 +20,12 @@ function App() {
   );
 }
 
-export default App;
+function mapStateToProps({ user }) {
+  return {
+    error: user.error,
+    loggedIn: user.loggedIn,
+    user: user.user
+  };
+}
+
+export default connect(mapStateToProps)(App);

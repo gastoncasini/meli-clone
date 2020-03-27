@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <div className="banner">
-        <h1 className="title">Header Title</h1>
+        <h1 className="banner__title">Header Title</h1>
       </div>
 
       <Catalog />

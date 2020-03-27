@@ -8,7 +8,7 @@ function Message({ msg, type }) {
   return <div className="message">{msg}</div>;
 }
 
-function Login({ doLoginAction, doLogoutAction, error, loggedIn, user }) {
+function LoginModule({ doLoginAction, error }) {
   let [username, setUsername] = useState("");
   let [password, setPassword] = useState("");
 
@@ -25,11 +25,46 @@ function Login({ doLoginAction, doLogoutAction, error, loggedIn, user }) {
   function login(e) {
     e.preventDefault();
     doLoginAction(username, password);
-
-    setPassword("");
-    setUsername("");
   }
-  function Logout() {
+
+  return (
+    <form className="form" onSubmit={login}>
+      {error && <Message msg={error} type={"error"} />}
+      <div className="input-block">
+        <label htmlFor="username" className="input-block__label">
+          username
+        </label>
+        <input
+          className="input-block__input"
+          type="text"
+          name="username"
+          value={username}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="input-block">
+        <label htmlFor="password" className="input-block__label">
+          password
+        </label>
+        <input
+          className="input-block__input"
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+        />
+      </div>
+
+      <button type="submit" className={"button button--yellow"}>
+        login
+      </button>
+    </form>
+  );
+}
+
+function LoginPage({ loggedIn, user, doLogoutAction, ...rest }) {
+  function logout() {
     doLogoutAction();
   }
 
@@ -37,11 +72,9 @@ function Login({ doLoginAction, doLogoutAction, error, loggedIn, user }) {
     return (
       <Card>
         <div className="login-page">
-          <h1 className="title">Login page</h1>
+          <h1 className="title">Welcome {`${user}`}</h1>
 
-          <p>Welcome {`${user}`}</p>
-
-          <button className={"button button-grey"} onClick={Logout}>
+          <button className={"button button--grey"} onClick={logout}>
             Logout
           </button>
         </div>
@@ -52,34 +85,8 @@ function Login({ doLoginAction, doLogoutAction, error, loggedIn, user }) {
   return (
     <Card>
       <div className="login-page">
-        <h1 className="title">Login page</h1>
-
-        <form className="form" onSubmit={login}>
-          {error && <Message msg={error} type={"error"} />}
-          <div className="input-block">
-            <label htmlFor="username">username</label>
-            <input
-              type="text"
-              name="username"
-              value={username}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="input-block">
-            <label htmlFor="password">password</label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              onChange={handleChange}
-            />
-          </div>
-
-          <button type="submit" className={"button button--yellow"}>
-            login
-          </button>
-        </form>
+        <h1 className="title">Login Page</h1>
+        <LoginModule {...rest} />
       </div>
     </Card>
   );
@@ -94,5 +101,5 @@ function mapStateToProps({ user }) {
 }
 
 export default connect(mapStateToProps, { doLoginAction, doLogoutAction })(
-  Login
+  LoginPage
 );
