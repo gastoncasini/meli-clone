@@ -4,14 +4,19 @@ import { connect } from "react-redux";
 import { fetchProductsAction } from "../../redux/productsDuck";
 import LinkCard from "../LinkCard";
 import Pagination from "../Pagination";
+import "./styles.css";
 
 function renderProducts(prods) {
-  return prods.map(prod => {
+  return prods.map((prod) => {
     return <LinkCard {...prod} />;
   });
 }
 
 function Catalog({ products, fetching, fetchProductsAction }) {
+  function fetchProducts() {
+    fetchProductsAction(5);
+  }
+
   useEffect(() => {
     fetchProductsAction(5);
   }, []);
@@ -25,7 +30,9 @@ function Catalog({ products, fetching, fetchProductsAction }) {
       <h2>Products</h2>
       {renderProducts(products)}
 
-      <Pagination />
+      <button className={"btn-fetch"} onClick={fetchProducts}>
+        Load more
+      </button>
     </div>
   );
 }

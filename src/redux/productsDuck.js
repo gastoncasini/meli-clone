@@ -14,7 +14,7 @@ function fakeProductData(quantity) {
   const product = () => {
     return {
       name: faker.commerce.productName(),
-      image: "https://via.placeholder.com/258x146",
+      image: "https://via.placeholder.com/258x240",
       price: faker.commerce.price(),
       discount: randomBool() ? randomDiscount() : null,
       location: faker.address.city()
@@ -35,7 +35,9 @@ function fakeProductData(quantity) {
 }
 
 // constants
-const initialData = {};
+const initialData = {
+  productsList: []
+};
 const GET_PRODUCTS = "GET_PRODUCTS";
 const GET_PRODUCTS_SUCCESS = "GET_PRODUCTS_SUCCESS";
 const GET_PRODUCTS_ERROR = "GET_PRODUCTS_ERROR";
@@ -47,7 +49,11 @@ export default function reducer(state = initialData, action) {
     case GET_PRODUCTS:
       return { ...state, fetching: true };
     case GET_PRODUCTS_SUCCESS:
-      return { ...state, fetching: false, productsList: action.payload };
+      return {
+        ...state,
+        fetching: false,
+        productsList: state.productsList.concat(action.payload)
+      };
     case GET_PRODUCTS_ERROR:
       return { ...state, fetching: false, error: action.payload };
 
@@ -58,19 +64,19 @@ export default function reducer(state = initialData, action) {
 
 // actions
 
-export let fetchProductsAction = numberOfProduts => dispatch => {
+export let fetchProductsAction = (numberOfProduts) => (dispatch) => {
   dispatch({
     type: GET_PRODUCTS
   });
 
   fakeProductData(numberOfProduts)
-    .then(products =>
+    .then((products) =>
       dispatch({
         type: GET_PRODUCTS_SUCCESS,
         payload: [...products]
       })
     )
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
       dispatch({
         type: GET_PRODUCTS_ERROR,
