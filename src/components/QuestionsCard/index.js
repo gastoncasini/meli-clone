@@ -19,34 +19,22 @@ function TextBlock({ user, content, type }) {
   );
 }
 
-function Question({ quest, ans }) {
+function Question({ ques, ans, vendor }) {
+  console.log(ques);
   return (
     <>
-      <TextBlock type={"quest"} {...quest} />
-      {ans && <TextBlock type={"ans"} {...ans} />}
+      <TextBlock type={"quest"} {...ques} />
+      {ans && <TextBlock type={"ans"} content={ans} user={vendor} />}
     </>
   );
 }
 
-export default function QuestionsCard({ questions }) {
-  let testQuestions = [
-    {
-      quest: {
-        user: "lolocololo",
-        content: "hola cual es el costo del envio ?"
-      },
-      ans: {
-        user: "shoes inc",
-        content: "el envio es gratis papa ! "
-      }
-    }
-  ];
-
-  questions = questions ? questions : testQuestions;
+export default function QuestionsCard({ questions, vendor }) {
+  console.log(questions);
 
   function renderQuestions(quest) {
-    return quest.map(props => {
-      return <Question {...props} />;
+    return quest.map((props) => {
+      return <Question {...props} vendor={vendor} />;
     });
   }
 

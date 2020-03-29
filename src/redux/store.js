@@ -1,6 +1,6 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import user, { doRestoreSessionAction } from "./userDuck";
-import products, { fetchProductsAction } from "./productsDuck";
+import products from "./productsDuck";
 import thunk from "redux-thunk";
 
 let rootReducer = combineReducers({

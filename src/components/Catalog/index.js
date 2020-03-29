@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-
 import { fetchProductsAction } from "../../redux/productsDuck";
 import LinkCard from "../LinkCard";
 import "./styles.css";
@@ -17,11 +16,10 @@ function Catalog({ products, fetching, fetchProductsAction }) {
   }
 
   useEffect(() => {
-    console.log(products);
-    if (!products.productsList) {
-      fetchProductsAction(5);
+    if (!products[0]) {
+      fetchProducts();
     }
-  }, []);
+  }, [products]);
 
   if (fetching || !products) {
     return <h1>...CARGANDO</h1>;
