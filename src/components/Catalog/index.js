@@ -3,12 +3,11 @@ import { connect } from "react-redux";
 
 import { fetchProductsAction } from "../../redux/productsDuck";
 import LinkCard from "../LinkCard";
-import Pagination from "../Pagination";
 import "./styles.css";
 
 function renderProducts(prods) {
-  return prods.map((prod) => {
-    return <LinkCard {...prod} />;
+  return prods.map((prod, i) => {
+    return <LinkCard {...prod} key={i} />;
   });
 }
 
@@ -18,7 +17,10 @@ function Catalog({ products, fetching, fetchProductsAction }) {
   }
 
   useEffect(() => {
-    fetchProductsAction(5);
+    console.log(products);
+    if (!products.productsList) {
+      fetchProductsAction(5);
+    }
   }, []);
 
   if (fetching || !products) {
