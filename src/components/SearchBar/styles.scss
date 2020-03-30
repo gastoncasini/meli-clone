@@ -1,0 +1,25 @@
+.search {
+  width: 80%;
+  height: 1.8rem;
+  font-size: 1rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+
+  &__magnifier {
+    border-radius: 0.5em 0 0 0.5em;
+    width: 20%;
+    background-color: #ffffff;
+    color: darken(#ffffff, 30%);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__input {
+    border-radius: 0 0.5em 0.5em 0;
+    width: 80%;
+    height: 100%;
+    background-color: #ffffff;
+  }
+}
