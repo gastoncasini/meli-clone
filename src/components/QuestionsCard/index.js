@@ -20,7 +20,6 @@ function TextBlock({ user, content, type }) {
 }
 
 function Question({ ques, ans, vendor }) {
-  console.log(ques);
   return (
     <>
       <TextBlock type={"quest"} {...ques} />
@@ -30,8 +29,6 @@ function Question({ ques, ans, vendor }) {
 }
 
 export default function QuestionsCard({ questions, vendor }) {
-  console.log(questions);
-
   function renderQuestions(quest) {
     return quest.map((props) => {
       return <Question {...props} vendor={vendor} />;

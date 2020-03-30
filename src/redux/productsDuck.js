@@ -2,13 +2,18 @@ import faker from "faker";
 
 // aux
 
+// devuelve un valor booleano random
+
 function randomBool() {
   return Math.random() > 0.5;
 }
 
+// devuelve un numero de descuento en formato $ NUM OFF , descueto maximo de 80%
 function randomDiscount() {
   return `$${String(10 * Math.floor(Math.random() * 8 + 1))} OFF`;
 }
+
+// devuelve un array con objetos populados con datos de productos falsos
 
 function fakeProductData(quantity) {
   const vendor = () => {
