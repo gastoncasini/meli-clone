@@ -11,3 +11,21 @@
   .product__discount {
     color: #11a98b;
     width: 50%; }
+
+.price-block {
+  width: 100%;
+  padding-bottom: 1em;
+  display: flex;
+  flex-flow: row nowrap; }
+  .price-block__real-value {
+    color: #303030;
+    font-size: 1.6em; }
+  .price-block__old-value {
+    font-size: 0.8rem;
+    text-decoration: dashed;
+    color: #7d7d7d; }
+  .price-block__discount {
+    box-sizing: border-box;
+    color: #11a98b;
+    padding-left: 0.5em;
+    padding-top: 1em; }

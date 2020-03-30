@@ -1,10 +1,24 @@
 // variables
 $pallete-1: rgb(252, 210, 72);
-$pallete-2: rgb(72, 129, 252);
+$pallete-2: rgb(73, 115, 255);
 $pallete-3: #eee;
 // mixins
 @mixin big-screens {
   @media (min-width: 499px) {
     @content;
   }
+}
+
+@mixin btn {
+  display: block;
+  font-size: 1.2rem;
+  border-radius: 0.25rem;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+@mixin full-width-btn {
+  @include btn;
+  width: 100%;
 }

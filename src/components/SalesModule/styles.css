@@ -1,0 +1,23 @@
+.sales {
+  width: 100%; }
+  .sales__btn {
+    display: block;
+    font-size: 1.2rem;
+    border-radius: 0.25rem;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    width: 100%;
+    margin: 1rem 0; }
+    .sales__btn--with-border {
+      border: 1px solid #4973ff;
+      color: #4973ff; }
+    .sales__btn--with-bg-color {
+      background-color: #4973ff;
+      color: #fff; }
+  .sales__quantity {
+    margin: 0.5em 0;
+    display: flex;
+    flex-flow: column nowrap; }
+    .sales__quantity__label {
+      margin-bottom: 0.25em; }

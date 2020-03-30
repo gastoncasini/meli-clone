@@ -11,7 +11,7 @@ function randomBool() {
 
 // devuelve un numero de descuento en formato $ NUM OFF , descueto maximo de 80%
 function randomDiscount() {
-  return `$${String(10 * Math.floor(Math.random() * 8 + 1))} OFF`;
+  return 10 * Math.floor(Math.random() * 8 + 1);
 }
 
 // devuelve un array con objetos populados con datos de productos falsos

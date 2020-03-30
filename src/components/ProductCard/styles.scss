@@ -16,10 +16,29 @@ $discount: rgb(17, 169, 139);
     color: $discount;
     width: 50%;
   }
-  &__vendor {
+}
+
+.price-block {
+  width: 100%;
+  padding-bottom: 1em;
+  display: flex;
+  flex-flow: row nowrap;
+
+  &__real-value {
+    color: $font-color-1;
+    font-size: 1.6em;
   }
-  &__location {
+
+  &__old-value {
+    font-size: 0.8rem;
+    text-decoration: dashed;
+    color: lighten($font-color-1, 30%);
   }
-  &__desc {
+
+  &__discount {
+    box-sizing: border-box;
+    color: $discount;
+    padding-left: 0.5em;
+    padding-top: 1em;
   }
 }

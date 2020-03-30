@@ -4,6 +4,7 @@ import { fetchItemAction } from "../../redux/productsDuck";
 import ProductCard from "../../components/ProductCard";
 import VendorCard from "../../components/VendorCard";
 import QuestionsCard from "../../components/QuestionsCard";
+import SalesModule from "../../components/SalesModule";
 
 function Product({ item, fetchItemAction }) {
   useEffect(() => {
@@ -17,7 +18,9 @@ function Product({ item, fetchItemAction }) {
   }
   return (
     <>
-      <ProductCard {...item} />
+      <ProductCard {...item}>
+        <SalesModule />
+      </ProductCard>
       <VendorCard {...item.vendor} />
       <QuestionsCard questions={item.questions} vendor={item.vendor.name} />
     </>
