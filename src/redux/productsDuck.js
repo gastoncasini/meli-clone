@@ -1,4 +1,5 @@
 import faker from "faker";
+import { v4 as uuidv4 } from "uuid";
 
 // aux
 
@@ -37,8 +38,9 @@ function fakeProductData(quantity) {
     ];
   };
 
-  const product = () => {
+  const product = id => {
     return {
+      id: uuidv4(),
       name: faker.commerce.productName(),
       image: "https://via.placeholder.com/258x240",
       price: faker.commerce.price(),
@@ -111,19 +113,19 @@ export default function reducer(state = initialData, action) {
 
 // actions
 
-export let fetchItemAction = (itemID) => (dispatch) => {
+export let fetchItemAction = itemID => dispatch => {
   dispatch({
     type: GET_PRODUCT_BY_ID
   });
 
   fakeProductData()
-    .then((products) => {
+    .then(products => {
       dispatch({
         type: GET_PRODUCT_BY_ID_SUCCESS,
         payload: products[0]
       });
     })
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
       dispatch({
         type: GET_PRODUCT_BY_ID_ERROR,
@@ -132,23 +134,33 @@ export let fetchItemAction = (itemID) => (dispatch) => {
     });
 };
 
-export let fetchProductsAction = (numberOfProduts) => (dispatch) => {
+export let fetchProductsAction = numberOfProduts => dispatch => {
   dispatch({
     type: GET_PRODUCTS
   });
 
   fakeProductData(numberOfProduts)
-    .then((products) =>
+    .then(products =>
       dispatch({
         type: GET_PRODUCTS_SUCCESS,
         payload: [...products]
       })
     )
-    .catch((error) => {
+    .catch(error => {
       console.log(error);
       dispatch({
         type: GET_PRODUCTS_ERROR,
         payload: { error }
       });
     });
+};
+
+export let selectItemAction = itemID => (dispatch, getState) => {
+  let { productsList } = getState().products;
+  let selectedItem = productsList.filter(product => product.id === itemID)[0];
+
+  dispatch({
+    type: GET_PRODUCT_BY_ID_SUCCESS,
+    payload: selectedItem
+  });
 };

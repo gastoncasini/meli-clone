@@ -6,7 +6,7 @@ import "./styles.css";
 
 function renderProducts(prods) {
   return prods.map((prod, i) => {
-    return <LinkCard {...prod} key={i} />;
+    return <LinkCard key={i} {...prod} />;
   });
 }
 
