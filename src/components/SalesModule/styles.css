@@ -20,4 +20,10 @@
     display: flex;
     flex-flow: column nowrap; }
     .sales__quantity__label {
-      margin-bottom: 0.25em; }
+      color: #4b4b4b;
+      margin: 0.25rem 0; }
+    .sales__quantity__select {
+      background-color: #eee;
+      padding: 0.5rem 2rem;
+      border-radius: 0.25rem;
+      font-size: 1.2rem; }
