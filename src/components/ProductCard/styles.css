@@ -9,7 +9,7 @@
     text-align: center;
     width: 50%; }
   .product__discount {
-    color: #11a98b;
+    color: #27ae60;
     width: 50%; }
 
 .price-block {
@@ -26,6 +26,6 @@
     color: #7d7d7d; }
   .price-block__discount {
     box-sizing: border-box;
-    color: #11a98b;
+    color: #27ae60;
     padding-left: 0.5em;
     padding-top: 1em; }

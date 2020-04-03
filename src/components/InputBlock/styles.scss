@@ -1,0 +1,37 @@
+.input-block {
+  width: 100%;
+  padding: 0.5rem 1em;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+
+  &--inner {
+    padding: 0;
+    &:first-child {
+      margin-right: 1.5rem;
+    }
+  }
+
+  &--double {
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+
+  &__input {
+    border: 2px solid #d3d8dd;
+    border-radius: 0.25rem;
+    color: #d3d8dd;
+    width: 100%;
+    height: 1.75em;
+    font-size: 1.1em;
+  }
+
+  &__label {
+    color: #1d2d3e;
+    font-size: 0.9rem;
+    font-weight: bolder;
+    align-self: flex-start;
+  }
+}

@@ -1,7 +1,9 @@
 // variables
 $pallete-1: rgb(252, 210, 72);
 $pallete-2: rgb(73, 115, 255);
-$pallete-3: #eee;
+$pallete-3: rgb(238, 238, 238);
+$success-green: rgb(39, 174, 96);
+$discount-green: rgb(17, 169, 139);
 // mixins
 @mixin big-screens {
   @media (min-width: 499px) {
@@ -11,14 +13,15 @@ $pallete-3: #eee;
 
 @mixin btn {
   display: block;
-  font-size: 1.2rem;
   border-radius: 0.25rem;
-  margin: 0 auto;
-  padding: 1rem 2rem;
+  font-size: 1.1rem;
   cursor: pointer;
 }
 
 @mixin full-width-btn {
   @include btn;
+  padding: 1rem 2rem;
+
   width: 100%;
+  margin: 0 auto;
 }

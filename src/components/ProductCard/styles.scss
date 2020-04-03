@@ -1,5 +1,6 @@
+@import "../../scss/partials/global";
 $font-color-1: rgb(48, 48, 48);
-$discount: rgb(17, 169, 139);
+
 .product {
   margin: 0.5em 0;
   width: 100%;
@@ -13,7 +14,7 @@ $discount: rgb(17, 169, 139);
     width: 50%;
   }
   &__discount {
-    color: $discount;
+    color: $success-green;
     width: 50%;
   }
 }
@@ -37,7 +38,7 @@ $discount: rgb(17, 169, 139);
 
   &__discount {
     box-sizing: border-box;
-    color: $discount;
+    color: $success-green;
     padding-left: 0.5em;
     padding-top: 1em;
   }
