@@ -38,11 +38,11 @@ function fakeProductData(quantity) {
     ];
   };
 
-  const product = id => {
+  const product = element => {
     return {
       id: uuidv4(),
       name: faker.commerce.productName(),
-      image: "https://via.placeholder.com/258x240",
+      image: `https://picsum.photos/200?random=${element}`,
       price: faker.commerce.price(),
       discount: randomBool() ? randomDiscount() : null,
       location: faker.address.city(),
@@ -54,7 +54,7 @@ function fakeProductData(quantity) {
   return new Promise((resolve, reject) => {
     let products = Array(quantity)
       .fill(null)
-      .map(() => product());
+      .map((_, i) => product(i));
 
     if (products) {
       resolve(products);
