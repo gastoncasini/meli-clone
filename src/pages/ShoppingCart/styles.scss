@@ -118,16 +118,16 @@
   }
 }
 
-.ms-form {
+.ms-checkout {
   margin: 2rem 0;
   width: 100%;
   height: 80vh;
-  display: grid;
-
+/*   display: grid;
+ */
   &__step {
-    grid-column: 1;
+  /*   grid-column: 1;
     grid-row: 2;
-    z-index: 3;
+    z-index: 3;  */
     &--hidden {
       display: none;
     }

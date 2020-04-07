@@ -5,7 +5,7 @@ export default function InputBlock({
   type,
   value,
   eventHandler,
-  double
+  double,
 }) {
   let inputClasses = double ? "input-block input-block--inner" : "input-block";
 
@@ -25,24 +25,6 @@ export default function InputBlock({
   );
 }
 
-export function DoubleInputBLock({ inputs }) {
-  if (!inputs) {
-    inputs = [
-      {
-        name: "Altura",
-        type: "text"
-      },
-      {
-        name: "C.P.",
-        type: "text"
-      }
-    ];
-  }
-  return (
-    <div className="input-block input-block--double">
-      {inputs.map(input => (
-        <InputBlock {...input} double={true} />
-      ))}
-    </div>
-  );
+export function DoubleInputContainer({ children }) {
+  return <div className="input-block input-block--double">{children}</div>;
 }
