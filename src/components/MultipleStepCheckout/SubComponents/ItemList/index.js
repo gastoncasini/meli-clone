@@ -146,9 +146,9 @@ export function ItemListWithTotal({ hidden }) {
     : "ms-checkout__step";
 
   return (
-    <div className={className}>
+    <>
       <ItemList />
       <Total />
-    </div>
+    </>
   );
 }

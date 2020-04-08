@@ -2,14 +2,9 @@ import React from "react";
 import Card from "../../../Card";
 import InputBlock, { DoubleInputContainer } from "../../../InputBlock";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLock } from "@fortawesome/free-solid-svg-icons";
-export function SelectPaymentMethod({ hidden, data, handleChange }) {
-  let className = hidden
-    ? "ms-checkout__step ms-checkout__step--hidden"
-    : "ms-checkout__step";
-
+export function SelectPaymentMethod({ data, handleChange }) {
   return (
-    <div className={className}>
+    <>
       <Card>
         <h1>$ 2194.00</h1>
       </Card>
@@ -30,9 +25,9 @@ export function SelectPaymentMethod({ hidden, data, handleChange }) {
 
         <div className="ms-checkout__step__info">
           <strong>Pago seguro</strong>
-          <FontAwesomeIcon icon={faLock} />
+          <FontAwesomeIcon icon="lock" />
         </div>
       </Card>
-    </div>
+    </>
   );
 }

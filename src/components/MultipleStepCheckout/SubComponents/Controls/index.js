@@ -2,6 +2,11 @@ import React from "react";
 
 export function Controls({ step, max, control, helper }) {
   function next() {
+    if (step === null) {
+      control(2);
+      return;
+    }
+
     if (step < max) {
       control(step + 1);
     }
