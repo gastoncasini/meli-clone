@@ -78,6 +78,10 @@
   font-size: 0.8rem;
   font-weight: bold;
   color: #747474; }
+  .info-block__title--small {
+    font-size: 0.9rem; }
+  .info-block__title--bold {
+    font-weight: bold; }
   .info-block__field-container {
     display: flex;
     justify-content: space-between;
@@ -108,9 +112,15 @@
   height: 80vh;
   /*   display: grid;
  */ }
-  .ms-checkout__step {
-    /*   grid-column: 1;
-    grid-row: 2;
-    z-index: 3;  */ }
-    .ms-checkout__step--hidden {
-      display: none; }
+  .ms-checkout__step--hidden {
+    display: none; }
+  .ms-checkout__step__info {
+    margin: 2rem 0 0.5rem 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    color: #1d2d3e; }
+    .ms-checkout__step__info strong {
+      margin-right: 0.5rem; }
+    .ms-checkout__step__info svg {
+      color: #e0ca00; }

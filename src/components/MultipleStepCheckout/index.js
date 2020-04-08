@@ -1,38 +1,25 @@
 import React, { useState } from "react";
+import Modal from "react-modal";
 import { ItemListWithTotal } from "./SubComponents/ItemList";
-import { ProgressBar } from "./SubComponents/ProgressBar";
 import { Controls } from "./SubComponents/Controls";
-import { SelectDeliveryAddress } from "./SubComponents/SelectDeliveryAddress";
 import { SelectPaymentMethod } from "./SubComponents/SelectPaymentMethod";
+import "./styles.css";
 
 export default function MultipleStepCheckout() {
   let [currentStep, setStep] = useState(1);
-  let [address, setAddress] = useState({
-    locallity: "",
-    street: "",
-    streetNumber: "",
-    zipCode: "",
-  });
+
   let [card, setCardDetails] = useState({
-    name: "",
-    number: "",
-    expiration: "",
-    code: "",
+    name: "gaston emiliano casini",
+    number: "120182r182r8093",
+    expiration: "22/22",
+    code: "723",
   });
 
-  function onAddresChange(e) {
-    let mapFields = {
-      localidad: "locallity",
-      calle: "street",
-      altura: "streetNumber",
-      codigo: "zipCode",
-    };
+  let [prosessing, setProsessing] = useState(false);
 
-    let { value, name } = e.target;
-    let newAddress = { ...address };
-    newAddress[mapFields[name]] = value;
-
-    setAddress(newAddress);
+  function ProcessPayment() {
+    console.log(card);
+    setProsessing(true);
   }
 
   function onCardChange(e) {
@@ -47,29 +34,23 @@ export default function MultipleStepCheckout() {
     let newCard = { ...card };
     newCard[mapFields[name]] = value;
 
-    console.log(value, name);
     setCardDetails(newCard);
   }
 
   return (
     <div className="ms-checkout">
-      <ProgressBar progress={currentStep} />
       <ItemListWithTotal hidden={currentStep !== 1} />
-      <SelectDeliveryAddress
-        hidden={currentStep !== 2}
-        userAddresses={["", "", "+"]}
-        data={address}
-        handleChange={onAddresChange}
-      />
-
       <SelectPaymentMethod
-        hidden={currentStep !== 3}
-        userPaymentMethods={["", "", "+"]}
+        hidden={currentStep !== 2}
         data={card}
         handleChange={onCardChange}
       />
-
-      <Controls step={currentStep} max={3} control={setStep} />
+      <Controls
+        step={currentStep}
+        max={2}
+        control={setStep}
+        helper={ProcessPayment}
+      />
     </div>
   );
 }

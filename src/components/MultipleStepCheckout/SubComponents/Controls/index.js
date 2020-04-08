@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Controls({ step, max, control }) {
+export function Controls({ step, max, control, helper }) {
   function next() {
     if (step < max) {
       control(step + 1);
@@ -16,7 +16,7 @@ export function Controls({ step, max, control }) {
         <button className="controls__button" onClick={prev}>
           Anterior
         </button>
-        <button className="controls__button" onClick={next}>
+        <button className="controls__button" onClick={helper}>
           PAGAR
         </button>
       </div>
