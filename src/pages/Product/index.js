@@ -4,7 +4,6 @@ import { fetchItemAction } from "../../redux/productsDuck";
 import ProductCard from "../../components/ProductCard";
 import VendorCard from "../../components/VendorCard";
 import QuestionsCard from "../../components/QuestionsCard";
-import SalesModule from "../../components/SalesModule";
 
 function Product({ item, fetchItemAction }) {
   useEffect(() => {
@@ -18,9 +17,7 @@ function Product({ item, fetchItemAction }) {
   }
   return (
     <>
-      <ProductCard {...item}>
-        <SalesModule />
-      </ProductCard>
+      <ProductCard {...item} unique={true} />
       <VendorCard {...item.vendor} />
       <QuestionsCard questions={item.questions} vendor={item.vendor.name} />
     </>
@@ -29,7 +26,7 @@ function Product({ item, fetchItemAction }) {
 
 function mapStateToProps({ products }) {
   return {
-    item: products.selectedItem
+    item: products.selectedItem,
   };
 }
 

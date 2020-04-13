@@ -1,12 +1,14 @@
 import React from "react";
+import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "../../../Card";
 import InputBlock, { DoubleInputContainer } from "../../../InputBlock";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-export function SelectPaymentMethod({ data, handleChange }) {
+function SelectPaymentMethod({ data, handleChange, total }) {
+  total = total ? total : 0.0;
   return (
     <>
       <Card>
-        <h1>$ 2194.00</h1>
+        <h1>{`$ ${total}`}</h1>
       </Card>
       <Card>
         <p>Tarjeta de Credito/Debito</p>
@@ -31,3 +33,9 @@ export function SelectPaymentMethod({ data, handleChange }) {
     </>
   );
 }
+
+function mapStateToProps({ user }) {
+  return { total: user.order.total };
+}
+
+export default connect(mapStateToProps)(SelectPaymentMethod);

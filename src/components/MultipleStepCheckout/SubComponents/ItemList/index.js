@@ -1,37 +1,30 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import Modal from "react-modal";
 import Card from "../../../Card";
 import { SetDeliveryAddress } from "../SetDeliveryAddress";
 
-function ItemList() {
+function ItemList({ items }) {
   return (
     <ul className="item-list">
-      <Card>
-        <li className="item-list__item">
-          <img src="https://picsum.photos/50" alt="" className="item__img" />
+      {items.map(({ item, quantity }) => {
+        console.log(item);
+        return (
+          <Card>
+            <li className="item-list__item">
+              <img src={item.image} alt="" className="item__img" />
 
-          <div className="item__info">
-            <div className="item__info__top">Producto 1</div>
-            <div className="item__info__bottom">
-              <div className="">1</div>
-              <div className="">$ 100</div>
-            </div>
-          </div>
-        </li>
-      </Card>
-      <Card>
-        <li className="item-list__item">
-          <img src="https://picsum.photos/50" alt="" className="item__img" />
-          <div className="item__info">
-            <div className="item__info__top">Producto 2</div>
-
-            <div className="item__info__bottom">
-              <div className="">1</div>
-              <div className="">$ 100</div>
-            </div>
-          </div>
-        </li>
-      </Card>
+              <div className="item__info">
+                <div className="item__info__top">{item.name}</div>
+                <div className="item__info__bottom">
+                  <div className="">{quantity}</div>
+                  <div className="">{`$ ${item.price}`}</div>
+                </div>
+              </div>
+            </li>
+          </Card>
+        );
+      })}
     </ul>
   );
 }
@@ -43,7 +36,7 @@ function Delivery() {
     locallity: "Caba  ",
     street: "Calle falsa",
     streetNumber: "123",
-    zipCode: "1040",
+    zipCode: "1040"
   });
 
   function onAddresChange(e) {
@@ -51,7 +44,7 @@ function Delivery() {
       localidad: "locallity",
       calle: "street",
       altura: "streetNumber",
-      codigo: "zipCode",
+      codigo: "zipCode"
     };
 
     let { value, name } = e.target;
@@ -71,8 +64,8 @@ function Delivery() {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       border: "0",
-      boxShadow: " 0px 2px 10px lightgray",
-    },
+      boxShadow: " 0px 2px 10px lightgray"
+    }
   };
 
   function toggleModal() {
@@ -114,41 +107,46 @@ function Delivery() {
   );
 }
 
-function Total() {
+function Total({ items, total }) {
+  items = items ? items : [];
+
   return (
     <Card>
       <Delivery />
       <hr />
       <div className="info-block">
-        <div className="info-block__field-container">
-          <p className="info-block__field">producto 1 x 1</p>
+        {items.map(({ item, quantity }) => (
+          <div className="info-block__field-container">
+            <p className="info-block__field">{`${item.name} x ${quantity}`}</p>
 
-          <p className="info-block__value">$99</p>
-        </div>
-        <div className="info-block__field-container">
-          <p className="info-block__field">producto 2 x 2</p>
+            <p className="info-block__value">{`$ ${item.price * quantity}`}</p>
+          </div>
+        ))}
 
-          <p className="info-block__value">$99</p>
-        </div>
         <hr />
         <div className="info-block__field-container info-block__field-container--dark">
           <h2 className="info-block__field">Total:</h2>
-          <p className="info-block__value">$99</p>
+          <p className="info-block__value">{`$ ${total}`}</p>
         </div>
       </div>
     </Card>
   );
 }
 
-export function ItemListWithTotal({ hidden }) {
-  let className = hidden
-    ? "ms-checkout__step ms-checkout__step--hidden"
-    : "ms-checkout__step";
-
+function ItemListWithTotal({ items, total }) {
   return (
     <>
-      <ItemList />
-      <Total />
+      <ItemList items={items} />
+      <Total items={items} total={total} />
     </>
   );
 }
+
+function mapStateToProps({ user }) {
+  return {
+    items: user.order.items,
+    total: user.order.total
+  };
+}
+
+export default connect(mapStateToProps)(ItemListWithTotal);

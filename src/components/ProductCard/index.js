@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "../Card";
+import SalesModule from "../SalesModule";
 import "./styles.css";
 
 // aux
@@ -31,13 +32,7 @@ function Price({ value, discount }) {
   );
 }
 
-export default function ProductCard({
-  image,
-  name,
-  price,
-  discount,
-  children
-}) {
+export default function ProductCard({ image, name, price, discount, unique }) {
   return (
     <Card>
       <img alt="product description" src={image} />
@@ -45,7 +40,7 @@ export default function ProductCard({
         <Price value={price} discount={discount} />
         <p className="product__desc">{name}</p>
       </div>
-      {children}
+      {unique && <SalesModule />}
     </Card>
   );
 }

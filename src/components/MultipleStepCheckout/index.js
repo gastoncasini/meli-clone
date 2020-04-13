@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ItemListWithTotal } from "./SubComponents/ItemList";
+import ItemListWithTotal from "./SubComponents/ItemList";
 import { Controls } from "./SubComponents/Controls";
-import { SelectPaymentMethod } from "./SubComponents/SelectPaymentMethod";
+import SelectPaymentMethod from "./SubComponents/SelectPaymentMethod";
 import "./styles.css";
 
 function ProcessingStateDisplay({ processing, resolve }) {
@@ -13,14 +13,29 @@ function ProcessingStateDisplay({ processing, resolve }) {
   let container = "";
   let messageClass = "";
   let iconClass = "";
+
   useEffect(() => {
-    setTimeout(() => {
-      setState("error");
+    //emulates a response from backend service
+    let t = setTimeout(() => {
+      setState("verified");
+
+      return 1;
     }, 3000);
 
-    setTimeout(() => {
+    let b = setTimeout(() => {
       resolve();
+      return 2;
     }, 6000);
+
+    if (state === "verified") {
+      return () => {
+        console.log("unmounting");
+
+        console.log(window);
+        clearTimeout(t);
+        clearTimeout(b);
+      };
+    }
   }, [state]);
 
   switch (state) {
@@ -60,7 +75,6 @@ function ProcessingStateDisplay({ processing, resolve }) {
 
 export default function MultipleStepCheckout() {
   // Modal config
-
   Modal.setAppElement("#root");
 
   const ModalStyles = {
@@ -72,8 +86,8 @@ export default function MultipleStepCheckout() {
       alignItems: "center",
       position: "relative",
       inset: 0,
-      padding: "0",
-    },
+      padding: "0"
+    }
   };
 
   function toggleModal() {
@@ -87,9 +101,31 @@ export default function MultipleStepCheckout() {
     name: "gaston emiliano casini",
     number: "120182r182r8093",
     expiration: "22/22",
-    code: "723",
+    code: "723"
   });
+
+  // payment processing
   let [processing, setProcessing] = useState(false);
+
+  function ProcessPayment() {
+    console.log(card);
+    setProcessing(true);
+  }
+
+  function onCardChange(e) {
+    let mapFields = {
+      nombre: "name",
+      numero: "number",
+      vencimiento: "expiration",
+      cvv: "code"
+    };
+
+    let { value, name } = e.target;
+    let newCard = { ...card };
+    newCard[mapFields[name]] = value;
+
+    setCardDetails(newCard);
+  }
 
   // step container animation dinamic classes
 
@@ -113,26 +149,6 @@ export default function MultipleStepCheckout() {
       class2 = "ms-checkout__step ms-checkout__step--slide-in-rg";
       break;
     default:
-  }
-
-  function ProcessPayment() {
-    console.log(card);
-    setProcessing(true);
-  }
-
-  function onCardChange(e) {
-    let mapFields = {
-      nombre: "name",
-      numero: "number",
-      vencimiento: "expiration",
-      cvv: "code",
-    };
-
-    let { value, name } = e.target;
-    let newCard = { ...card };
-    newCard[mapFields[name]] = value;
-
-    setCardDetails(newCard);
   }
 
   return (

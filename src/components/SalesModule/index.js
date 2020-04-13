@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { addItemAction } from "../../redux/userDuck";
 import "./styles.css";
 
 function Select({ options, label, classes, onChange }) {
@@ -17,11 +19,15 @@ function Select({ options, label, classes, onChange }) {
   );
 }
 
-export default function SalesModule() {
+function SalesModule({ addItemAction }) {
   let [quantity, setQuantity] = useState(1);
 
   function selectQuantity(e) {
     setQuantity(e.target.value);
+  }
+
+  function addItem() {
+    addItemAction(quantity);
   }
 
   return (
@@ -40,12 +46,21 @@ export default function SalesModule() {
           onChange={selectQuantity}
         />
       </div>
-      <button className="sales__btn sales__btn--with-bg-color">
+      <button
+        className="sales__btn sales__btn--with-bg-color"
+        onClick={addItem}
+      >
         Comprar ahora
       </button>
-      <button className="sales__btn sales__btn--with-border">
+      <button className="sales__btn sales__btn--with-border" onClick={addItem}>
         Agregar al carrito
       </button>
     </div>
   );
 }
+
+function mapStateToProps({ products }) {
+  return {};
+}
+
+export default connect(mapStateToProps, { addItemAction })(SalesModule);
