@@ -1,0 +1,25 @@
+.number-input {
+  /*   margin: 0.5rem 0; */ }
+  .number-input__label {
+    font-size: 0.7rem;
+    text-align: center;
+    width: 100%;
+    display: none; }
+  .number-input__container {
+    display: flex;
+    flex-flow: row nowrap;
+    border: 1.5px solid #329ec9;
+    border-radius: 1rem;
+    width: 4rem; }
+  .number-input__btn {
+    border-left: 1px solid #329ec9;
+    color: #329ec9;
+    width: 1rem;
+    box-sizing: border-box; }
+    .number-input__btn--left {
+      border: none;
+      border-right: 1px solid #329ec9; }
+  .number-input__display {
+    width: 2rem;
+    color: #329ec9;
+    text-align: center; }

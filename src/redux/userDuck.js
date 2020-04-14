@@ -20,6 +20,9 @@ const LOG_OUT = "LOGOUT";
 
 const ORDER_ADD_ITEM = "ORDER_ADD_ITEM";
 const ORDER_REMOVE_ITEM = "ORDER_REMOVE_ITEM";
+
+const ORDER_SET_ITEM_QUANTITY = "ORDER_SET_ITEM_QUANTITY";
+
 const ORDER_UPDATE_TOTAL = "ORDER_UPDATE_TOTAL";
 
 const ORDER_SET_DELIVERY_ADDRESS = "ORDER_SET_DELIVERY_ADDRESS";
@@ -30,8 +33,8 @@ const initialData = {
   loggedIn: false,
   order: {
     items: [],
-    total: null
-  }
+    total: null,
+  },
 };
 
 // reducer
@@ -51,7 +54,7 @@ export default function reducer(state = initialData, action) {
         fetching: false,
         ...action.payload,
         loggedIn: true,
-        error: null
+        error: null,
       };
 
     case LOGIN_ERROR:
@@ -62,7 +65,13 @@ export default function reducer(state = initialData, action) {
     case ORDER_ADD_ITEM:
       return {
         ...state,
-        order: action.payload
+        order: action.payload,
+      };
+
+    case ORDER_SET_ITEM_QUANTITY:
+      return {
+        ...state,
+        order: action.payload,
       };
 
     default:
@@ -74,7 +83,7 @@ export default function reducer(state = initialData, action) {
 
 export let doLoginAction = (username, password) => (dispatch) => {
   dispatch({
-    type: LOGIN
+    type: LOGIN,
   });
 
   userService
@@ -82,7 +91,7 @@ export let doLoginAction = (username, password) => (dispatch) => {
     .then((user) => {
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: user
+        payload: user,
       });
     })
     .catch((err) => {
@@ -94,7 +103,7 @@ export let doLoginAction = (username, password) => (dispatch) => {
 export let doLogoutAction = () => (dispatch) => {
   userService.logout().then(
     dispatch({
-      type: LOG_OUT
+      type: LOG_OUT,
     })
   );
 };
@@ -105,7 +114,7 @@ export let doRestoreSessionAction = () => (dispatch) => {
   if (user) {
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: user
+      payload: user,
     });
   }
 };
@@ -119,7 +128,7 @@ export let addItemAction = (quantity) => (dispatch, getState) => {
   if (!checkItems[0]) {
     let newItems = items.concat({
       item: currentItem,
-      quantity
+      quantity: Number(quantity),
     });
 
     let total = sumTotal(newItems);
@@ -128,10 +137,32 @@ export let addItemAction = (quantity) => (dispatch, getState) => {
       type: ORDER_ADD_ITEM,
       payload: {
         items: newItems,
-        total: total
-      }
+        total: total,
+      },
     });
   } else {
     console.log("item allready in collection");
   }
+};
+
+export let setItemQuantityAction = (operation, item) => (
+  dispatch,
+  getState
+) => {
+  let { items } = getState().user.order;
+  let total, newOrder;
+
+  let position = items.indexOf(item);
+  let newArray = [...items];
+  if (operation === "+") {
+    newArray[position] = { ...item, quantity: item.quantity + 1 };
+  }
+
+  if (operation === "-") {
+    newArray[position] = { ...item, quantity: item.quantity - 1 };
+  }
+  total = sumTotal(newArray);
+  newOrder = { items: newArray, total };
+
+  dispatch({ type: ORDER_SET_ITEM_QUANTITY, payload: newOrder });
 };

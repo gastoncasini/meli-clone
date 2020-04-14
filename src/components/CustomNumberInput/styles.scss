@@ -1,0 +1,34 @@
+.number-input {
+  /*   margin: 0.5rem 0; */
+  &__label {
+    font-size: 0.7rem;
+    text-align: center;
+    width: 100%;
+    display: none;
+  }
+  &__container {
+    display: flex;
+    flex-flow: row nowrap;
+    border: 1.5px solid #329ec9;
+    border-radius: 1rem;
+    width: 4rem;
+  }
+
+  &__btn {
+    border-left: 1px solid #329ec9;
+    color: #329ec9;
+    width: 1rem;
+    box-sizing: border-box;
+
+    &--left {
+      border: none;
+      border-right: 1px solid #329ec9;
+    }
+  }
+
+  &__display {
+    width: 2rem;
+    color: #329ec9;
+    text-align: center;
+  }
+}
