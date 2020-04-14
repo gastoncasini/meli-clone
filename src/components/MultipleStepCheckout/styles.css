@@ -107,13 +107,18 @@
     color: #fff; }
 
 .ms-checkout {
-  margin: 2rem 0;
+  margin: 0 0 2rem 0;
   width: 100%;
   height: 80vh;
   display: grid; }
   .ms-checkout__step {
     grid-column: 1;
     grid-row: 1; }
+    .ms-checkout__step--empty {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center; }
     .ms-checkout__step--hidden {
       display: none; }
     .ms-checkout__step--slide-in-rg {

@@ -129,7 +129,7 @@
 }
 
 .ms-checkout {
-  margin: 2rem 0;
+  margin: 0 0 2rem 0;
   width: 100%;
   height: 80vh;
   display: grid;
@@ -137,6 +137,13 @@
   &__step {
     grid-column: 1;
     grid-row: 1;
+
+    &--empty {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+    }
 
     &--hidden {
       display: none;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Card from "../Card";
 import ItemListWithTotal from "./SubComponents/ItemList";
 import { Controls } from "./SubComponents/Controls";
 import SelectPaymentMethod from "./SubComponents/SelectPaymentMethod";
@@ -73,7 +75,7 @@ function ProcessingStateDisplay({ processing, resolve }) {
   );
 }
 
-export default function MultipleStepCheckout() {
+function MultipleStepCheckout({ order }) {
   // Modal config
   Modal.setAppElement("#root");
 
@@ -86,8 +88,8 @@ export default function MultipleStepCheckout() {
       alignItems: "center",
       position: "relative",
       inset: 0,
-      padding: "0"
-    }
+      padding: "0",
+    },
   };
 
   function toggleModal() {
@@ -101,7 +103,7 @@ export default function MultipleStepCheckout() {
     name: "gaston emiliano casini",
     number: "120182r182r8093",
     expiration: "22/22",
-    code: "723"
+    code: "723",
   });
 
   // payment processing
@@ -117,7 +119,7 @@ export default function MultipleStepCheckout() {
       nombre: "name",
       numero: "number",
       vencimiento: "expiration",
-      cvv: "code"
+      cvv: "code",
     };
 
     let { value, name } = e.target;
@@ -151,6 +153,20 @@ export default function MultipleStepCheckout() {
     default:
   }
 
+  // shows empty card if there aren't any products in the cart
+
+  if (!order[0]) {
+    return (
+      <div className="ms-checkout">
+        <div className="ms-checkout__step ms-checkout__step--empty">
+          <Card>tu carrito esta vacio </Card>
+        </div>
+      </div>
+    );
+  }
+
+  //checkout shoppig-cart
+
   return (
     <div className="ms-checkout">
       <div className={class1}>
@@ -173,3 +189,9 @@ export default function MultipleStepCheckout() {
     </div>
   );
 }
+
+function mapStateToProps({ user }) {
+  return { order: user.order.items };
+}
+
+export default connect(mapStateToProps)(MultipleStepCheckout);
