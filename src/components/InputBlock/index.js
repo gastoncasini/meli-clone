@@ -11,7 +11,7 @@ export default function InputBlock({
 
   return (
     <div className={inputClasses}>
-      <label htmlFor={name} className="input-block__label">
+      <label for={name} className="input-block__label">
         {name}
       </label>
       <input

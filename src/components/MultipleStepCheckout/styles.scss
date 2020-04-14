@@ -131,18 +131,35 @@
 .ms-checkout {
   margin: 0 0 2rem 0;
   width: 100%;
-  height: 80vh;
   display: grid;
+  overflow-x: hidden;
+
+  &__header {
+    margin: 1rem;
+    text-align: center;
+    max-width: 450px;
+    min-width: 250px;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  &__subtitle {
+    font-size: 1rem;
+  }
 
   &__step {
     grid-column: 1;
-    grid-row: 1;
+    grid-row: 2;
 
     &--empty {
       display: flex;
       flex-flow: column nowrap;
       justify-content: center;
       align-items: center;
+
+      grid-row: 1;
     }
 
     &--hidden {

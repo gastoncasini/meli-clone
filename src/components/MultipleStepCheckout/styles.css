@@ -109,16 +109,27 @@
 .ms-checkout {
   margin: 0 0 2rem 0;
   width: 100%;
-  height: 80vh;
-  display: grid; }
+  display: grid;
+  overflow-x: hidden; }
+  .ms-checkout__header {
+    margin: 1rem;
+    text-align: center;
+    max-width: 450px;
+    min-width: 250px; }
+  .ms-checkout__title {
+    font-weight: bold;
+    font-size: 1.1rem; }
+  .ms-checkout__subtitle {
+    font-size: 1rem; }
   .ms-checkout__step {
     grid-column: 1;
-    grid-row: 1; }
+    grid-row: 2; }
     .ms-checkout__step--empty {
       display: flex;
       flex-flow: column nowrap;
       justify-content: center;
-      align-items: center; }
+      align-items: center;
+      grid-row: 1; }
     .ms-checkout__step--hidden {
       display: none; }
     .ms-checkout__step--slide-in-rg {

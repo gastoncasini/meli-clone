@@ -125,7 +125,12 @@ function MultipleStepCheckout({ order }) {
     setCardDetails(newCard);
   }
 
-  // step container animation dinamic classes
+  // step container classes
+
+  let stepTitle =
+    currentStep === 1 || currentStep === null
+      ? "productos y direccion de envio"
+      : "medio de pago";
 
   let class1 = "";
   let class2 = "";
@@ -153,11 +158,11 @@ function MultipleStepCheckout({ order }) {
 
   if (!order[0]) {
     return (
-      <div className="ms-checkout">
+      <section className="ms-checkout">
         <div className="ms-checkout__step ms-checkout__step--empty">
           <Card>tu carrito esta vacio </Card>
         </div>
-      </div>
+      </section>
     );
   }
 
@@ -165,6 +170,10 @@ function MultipleStepCheckout({ order }) {
 
   return (
     <section className="ms-checkout">
+      <header className="ms-checkout__header">
+        <h1 className="ms-checkout__title"> carrito de compras</h1>
+        <h2 className="ms-checkout__subtitle">{stepTitle}</h2>
+      </header>
       <div className={class1}>
         <ItemListWithTotal />
       </div>
