@@ -31,9 +31,6 @@ function ProcessingStateDisplay({ processing, resolve }) {
 
     if (state === "verified") {
       return () => {
-        console.log("unmounting");
-
-        console.log(window);
         clearTimeout(t);
         clearTimeout(b);
       };
@@ -110,7 +107,6 @@ function MultipleStepCheckout({ order }) {
   let [processing, setProcessing] = useState(false);
 
   function ProcessPayment() {
-    console.log(card);
     setProcessing(true);
   }
 
@@ -168,7 +164,7 @@ function MultipleStepCheckout({ order }) {
   //checkout shoppig-cart
 
   return (
-    <div className="ms-checkout">
+    <section className="ms-checkout">
       <div className={class1}>
         <ItemListWithTotal />
       </div>
@@ -186,7 +182,7 @@ function MultipleStepCheckout({ order }) {
       <Modal style={ModalStyles} isOpen={processing}>
         <ProcessingStateDisplay processing={processing} resolve={toggleModal} />
       </Modal>
-    </div>
+    </section>
   );
 }
 

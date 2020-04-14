@@ -2,27 +2,39 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import Card from "../../../Card";
+import CustomNumberInput from "../../../CustomNumberInput";
 import { SetDeliveryAddress } from "../SetDeliveryAddress";
+import { setItemQuantityAction } from "../../../../redux/userDuck";
 
-function ItemList({ items }) {
+function ItemList({ items, quantitySetter }) {
   return (
     <ul className="item-list">
-      {items.map(({ item, quantity }) => {
-        console.log(item);
+      {items.map((itemInfo) => {
+        let { item, quantity } = itemInfo;
         return (
-          <Card>
-            <li className="item-list__item">
-              <img src={item.image} alt="" className="item__img" />
+          <li>
+            <Card>
+              <section className="item-list__item">
+                <img
+                  src={item.image}
+                  alt="imagen del producto"
+                  className="item__img"
+                />
 
-              <div className="item__info">
-                <div className="item__info__top">{item.name}</div>
-                <div className="item__info__bottom">
-                  <div className="">{quantity}</div>
-                  <div className="">{`$ ${item.price}`}</div>
+                <div className="item__info">
+                  <div className="item__info__top">{item.name}</div>
+                  <div className="item__info__bottom">
+                    <CustomNumberInput
+                      value={quantity}
+                      item={itemInfo}
+                      controler={quantitySetter}
+                    />
+                    <div className="">{`$ ${item.price}`}</div>
+                  </div>
                 </div>
-              </div>
-            </li>
-          </Card>
+              </section>
+            </Card>
+          </li>
         );
       })}
     </ul>
@@ -36,7 +48,7 @@ function Delivery() {
     locallity: "Caba  ",
     street: "Calle falsa",
     streetNumber: "123",
-    zipCode: "1040"
+    zipCode: "1040",
   });
 
   function onAddresChange(e) {
@@ -44,7 +56,7 @@ function Delivery() {
       localidad: "locallity",
       calle: "street",
       altura: "streetNumber",
-      codigo: "zipCode"
+      codigo: "zipCode",
     };
 
     let { value, name } = e.target;
@@ -64,8 +76,8 @@ function Delivery() {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       border: "0",
-      boxShadow: " 0px 2px 10px lightgray"
-    }
+      boxShadow: " 0px 2px 10px lightgray",
+    },
   };
 
   function toggleModal() {
@@ -108,8 +120,6 @@ function Delivery() {
 }
 
 function Total({ items, total }) {
-  items = items ? items : [];
-
   return (
     <Card>
       <Delivery />
@@ -133,10 +143,14 @@ function Total({ items, total }) {
   );
 }
 
-function ItemListWithTotal({ items, total }) {
+function ItemListWithTotal({ items, total, setItemQuantityAction }) {
+  function quantityControler(action, item) {
+    setItemQuantityAction(action, item);
+  }
+
   return (
     <>
-      <ItemList items={items} />
+      <ItemList items={items} quantitySetter={quantityControler} />
       <Total items={items} total={total} />
     </>
   );
@@ -145,8 +159,10 @@ function ItemListWithTotal({ items, total }) {
 function mapStateToProps({ user }) {
   return {
     items: user.order.items,
-    total: user.order.total
+    total: user.order.total,
   };
 }
 
-export default connect(mapStateToProps)(ItemListWithTotal);
+export default connect(mapStateToProps, { setItemQuantityAction })(
+  ItemListWithTotal
+);
