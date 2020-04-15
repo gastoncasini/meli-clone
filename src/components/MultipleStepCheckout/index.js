@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "../Card";
 import ItemListWithTotal from "./SubComponents/ItemList";
-import { Controls } from "./SubComponents/Controls";
+import Button from "../../components/Button";
 import SelectPaymentMethod from "./SubComponents/SelectPaymentMethod";
 import "./styles.css";
 
@@ -94,7 +94,7 @@ function MultipleStepCheckout({ order }) {
   }
 
   // state init
-
+  let [processing, setProcessing] = useState(false);
   let [currentStep, setStep] = useState(null);
   let [card, setCardDetails] = useState({
     name: "gaston emiliano casini",
@@ -104,8 +104,6 @@ function MultipleStepCheckout({ order }) {
   });
 
   // payment processing
-  let [processing, setProcessing] = useState(false);
-
   function ProcessPayment() {
     setProcessing(true);
   }
@@ -125,6 +123,24 @@ function MultipleStepCheckout({ order }) {
     setCardDetails(newCard);
   }
 
+  // step controler
+
+  function nextStep() {
+    if (currentStep === 2) {
+      console.log("pagando");
+    } else {
+      setStep(2);
+    }
+  }
+  function prevStep() {
+    if (currentStep === 2) {
+      setStep(1);
+    }
+  }
+
+  let bottomButtonTxt =
+    currentStep === 2 ? "Pagar Ahora" : "Seleccionar Metodo de Pago";
+
   // step container classes
 
   let stepTitle =
@@ -137,11 +153,6 @@ function MultipleStepCheckout({ order }) {
 
   /* animation handler */
   switch (currentStep) {
-    case null:
-      class1 = "ms-checkout__step ";
-      class2 = "ms-checkout__step ms-checkout__step--hidden ";
-      break;
-
     case 1:
       class1 = "ms-checkout__step ms-checkout__step--slide-in-lf";
       class2 = "ms-checkout__step ms-checkout__step--slide-out-rg";
@@ -152,6 +163,8 @@ function MultipleStepCheckout({ order }) {
       class2 = "ms-checkout__step ms-checkout__step--slide-in-rg";
       break;
     default:
+      class1 = "ms-checkout__step ";
+      class2 = "ms-checkout__step ms-checkout__step--hidden ";
   }
 
   // shows empty card if there aren't any products in the cart
@@ -171,8 +184,12 @@ function MultipleStepCheckout({ order }) {
   return (
     <section className="ms-checkout">
       <header className="ms-checkout__header">
-        <h1 className="ms-checkout__title"> carrito de compras</h1>
         <h2 className="ms-checkout__subtitle">{stepTitle}</h2>
+        <Button
+          innnerHTML="volver atras"
+          className="button--small button--cian-light button--lowercase"
+          clickHandler={prevStep}
+        />
       </header>
       <div className={class1}>
         <ItemListWithTotal />
@@ -180,13 +197,13 @@ function MultipleStepCheckout({ order }) {
       <div className={class2}>
         <SelectPaymentMethod data={card} handleChange={onCardChange} />
       </div>
-
-      <Controls
-        step={currentStep}
-        max={2}
-        control={setStep}
-        helper={ProcessPayment}
-      />
+      <div className="ms-checkout__button-container">
+        <Button
+          innnerHTML={bottomButtonTxt}
+          clickHandler={currentStep === 2 ? ProcessPayment : nextStep}
+          className={"button--success-bold button--capitalize"}
+        />
+      </div>
 
       <Modal style={ModalStyles} isOpen={processing}>
         <ProcessingStateDisplay processing={processing} resolve={toggleModal} />

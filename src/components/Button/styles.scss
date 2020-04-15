@@ -9,13 +9,18 @@
   align-self: flex-end;
   font-size: 1em;
   text-transform: uppercase;
-  margin: 0.5em 0;
+  margin: 0.5rem;
   min-width: 80%;
 
   &--small {
     padding: 0.25rem;
     font-size: 0.75rem;
     min-width: unset;
+  }
+  &--medium {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    min-width: 100px;
   }
 
   &--capitalize {
@@ -45,9 +50,19 @@
     border: 1px solid $success-green;
   }
 
+  &--cian {
+    color: #fff;
+    background-color: $pallete-2;
+    border: none;
+  }
   &--cian-light {
     color: $pallete-2;
     border: 1px solid $pallete-2;
+  }
+  &--cian-lighter {
+    color: $pallete-2;
+    border: none;
+    padding-left: 0.5rem;
   }
 
   &--yellow {

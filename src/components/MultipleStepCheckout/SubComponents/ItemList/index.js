@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
 import Card from "../../../Card";
+import Button from "../../../Button";
 import CustomNumberInput from "../../../CustomNumberInput";
 import { SetDeliveryAddress } from "../SetDeliveryAddress";
 import { setItemQuantityAction } from "../../../../redux/userDuck";
@@ -87,9 +88,12 @@ function Delivery() {
   return (
     <>
       <Modal isOpen={open} style={customStyles}>
-        <SetDeliveryAddress data={address} handleChange={onAddresChange} />
-        <button onClick={toggleModal}>cancelar</button>
-        <button onClick={toggleModal}>Guardar</button>
+        <SetDeliveryAddress
+          data={address}
+          handleChange={onAddresChange}
+          cancel={toggleModal}
+          saveChanges={toggleModal}
+        />
       </Modal>
       <div className="info-block">
         <div className="info-block__field-container info-block__field-container--dark">
@@ -97,9 +101,13 @@ function Delivery() {
             Envio
           </h2>
 
-          <button className="info-block__edit-button" onClick={toggleModal}>
-            edit
-          </button>
+          <div className="info-block__edit-btn">
+            <Button
+              className="button--cian-lighter button--small button--lowercase"
+              innnerHTML="edit"
+              clickHandler={toggleModal}
+            />
+          </div>
         </div>
 
         <div className="info-block__field-container">

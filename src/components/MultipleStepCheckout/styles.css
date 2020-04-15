@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Baloo+Paaji+2:400,800&display=swap");
 /*progressbar*/
 .progressbar {
   margin-bottom: 30px;
@@ -111,6 +112,16 @@
   width: 100%;
   display: grid;
   overflow-x: hidden; }
+  .ms-checkout__button-container {
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    width: 100%;
+    padding: 0.125rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px -8px 32px -21px rgba(0, 0, 0, 0.75); }
   .ms-checkout__header {
     margin: 1rem;
     text-align: center;
