@@ -4,6 +4,7 @@ import { fetchItemAction } from "../../redux/productsDuck";
 import ProductCard from "../../components/ProductCard";
 import VendorCard from "../../components/VendorCard";
 import QuestionsCard from "../../components/QuestionsCard";
+import NavBar from "../../components/NavBar";
 
 function Product({ item, fetchItemAction }) {
   useEffect(() => {
@@ -17,6 +18,7 @@ function Product({ item, fetchItemAction }) {
   }
   return (
     <>
+      <NavBar />
       <ProductCard {...item} unique={true} />
       <VendorCard {...item.vendor} />
       <QuestionsCard questions={item.questions} vendor={item.vendor.name} />

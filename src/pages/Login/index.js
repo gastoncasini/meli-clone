@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { doLoginAction, doLogoutAction } from "../../redux/userDuck";
 import Card from "../../components/Card";
-
+import NavBar from "../../components/NavBar";
 import Button from "../../components/Button";
 import "./styles.css";
 
@@ -30,43 +30,45 @@ function LoginModule({ doLoginAction, error }) {
   }
 
   return (
-    <form className="form" onSubmit={login}>
-      {error && <Message msg={error} type={"error"} />}
-      <div className="input-block">
-        <label htmlFor="username" className="input-block__label">
-          username
-        </label>
-        <input
-          className="input-block__input"
-          type="text"
-          name="username"
-          value={username}
-          onChange={handleChange}
-        />
-      </div>
+    <>
+      <form className="form" onSubmit={login}>
+        {error && <Message msg={error} type={"error"} />}
+        <div className="input-block">
+          <label htmlFor="username" className="input-block__label">
+            username
+          </label>
+          <input
+            className="input-block__input"
+            type="text"
+            name="username"
+            value={username}
+            onChange={handleChange}
+          />
+        </div>
 
-      <div className="input-block">
-        <label htmlFor="password" className="input-block__label">
-          password
-        </label>
-        <input
-          className="input-block__input"
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-        />
-      </div>
+        <div className="input-block">
+          <label htmlFor="password" className="input-block__label">
+            password
+          </label>
+          <input
+            className="input-block__input"
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </div>
 
-      {/* <button type="submit" className={"button button--yellow"}>
+        {/* <button type="submit" className={"button button--yellow"}>
         login
       </button> */}
-      <Button
-        innnerHTML="logout"
-        clickHandler={login}
-        className={"button--yellow"}
-      />
-    </form>
+        <Button
+          innnerHTML="logout"
+          clickHandler={login}
+          className={"button--yellow"}
+        />
+      </form>
+    </>
   );
 }
 
@@ -91,12 +93,15 @@ function LoginPage({ loggedIn, user, doLogoutAction, ...rest }) {
   }
 
   return (
-    <Card>
-      <div className="login-page">
-        <h1 className="title">Login Page</h1>
-        <LoginModule {...rest} />
-      </div>
-    </Card>
+    <>
+      <NavBar />
+      <Card>
+        <div className="login-page">
+          <h1 className="title">Login Page</h1>
+          <LoginModule {...rest} />
+        </div>
+      </Card>
+    </>
   );
 }
 

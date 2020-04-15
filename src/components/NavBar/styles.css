@@ -11,6 +11,10 @@
   justify-content: space-evenly;
   align-items: center;
 }
+.nav-bar--wt-title {
+  justify-content: space-between;
+}
+
 .nav-bar .nav-bar__link {
   width: 15%;
   display: inline-flex;
