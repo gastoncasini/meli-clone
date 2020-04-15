@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css?family=Baloo+Paaji+2:400,800&display=swap");
+.button {
+  font-family: "Baloo Paaji 2", cursive;
+  cursor: pointer;
+  border: 1px solid black;
+  padding: 0.75em 1.5em;
+  border-radius: 8px;
+  align-self: flex-end;
+  font-size: 1em;
+  text-transform: uppercase;
+  margin: 0.5em 0;
+  min-width: 80%; }
+  .button--small {
+    padding: 0.25rem;
+    font-size: 0.75rem;
+    min-width: unset; }
+  .button--capitalize {
+    text-transform: capitalize;
+    font-weight: bold; }
+  .button--lowercase {
+    text-transform: lowercase;
+    font-weight: 800;
+    letter-spacing: 0.075rem; }
+  .button--success-bold {
+    background-color: #27ae60;
+    background: linear-gradient(135deg, #27ae60 0%, #27ae60 30%, #60db94 100%);
+    color: #fff;
+    border: 1px solid #27ae60; }
+  .button--success-light {
+    color: #27ae60;
+    border: 1px solid #27ae60; }
+  .button--cian-light {
+    color: #4973ff;
+    border: 1px solid #4973ff; }
+  .button--yellow {
+    color: #fff;
+    background-color: #4973ff;
+    border: 2px solid #0034e2; }
+  .button--grey {
+    background-color: #979797;
+    border: 2px solid #494949; }

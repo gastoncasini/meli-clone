@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { doLoginAction, doLogoutAction } from "../../redux/userDuck";
 import Card from "../../components/Card";
+
+import Button from "../../components/Button";
 import "./styles.css";
 
 function Message({ msg, type }) {
@@ -14,7 +16,7 @@ function LoginModule({ doLoginAction, error }) {
 
   const mapHooks = {
     username: setUsername,
-    password: setPassword
+    password: setPassword,
   };
 
   function handleChange(e) {
@@ -56,9 +58,14 @@ function LoginModule({ doLoginAction, error }) {
         />
       </div>
 
-      <button type="submit" className={"button button--yellow"}>
+      {/* <button type="submit" className={"button button--yellow"}>
         login
-      </button>
+      </button> */}
+      <Button
+        innnerHTML="logout"
+        clickHandler={login}
+        className={"button--yellow"}
+      />
     </form>
   );
 }
@@ -74,9 +81,10 @@ function LoginPage({ loggedIn, user, doLogoutAction, ...rest }) {
         <div className="login-page">
           <h1 className="title">Welcome {`${user}`}</h1>
 
-          <button className={"button button--grey"} onClick={logout}>
+          {/* <button className={"button button--grey"} onClick={logout}>
             Logout
-          </button>
+          </button> */}
+          <Button innnerHTML="logout" clickHandler={logout} />
         </div>
       </Card>
     );
@@ -96,7 +104,7 @@ function mapStateToProps({ user }) {
   return {
     error: user.error,
     loggedIn: user.loggedIn,
-    user: user.user
+    user: user.user,
   };
 }
 

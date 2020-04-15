@@ -1,0 +1,64 @@
+@import "../../scss/partials/global";
+
+.button {
+  font-family: $font;
+  cursor: pointer;
+  border: 1px solid black;
+  padding: 0.75em 1.5em;
+  border-radius: 8px;
+  align-self: flex-end;
+  font-size: 1em;
+  text-transform: uppercase;
+  margin: 0.5em 0;
+  min-width: 80%;
+
+  &--small {
+    padding: 0.25rem;
+    font-size: 0.75rem;
+    min-width: unset;
+  }
+
+  &--capitalize {
+    text-transform: capitalize;
+    font-weight: bold;
+  }
+  &--lowercase {
+    text-transform: lowercase;
+    font-weight: 800;
+    letter-spacing: 0.075rem;
+  }
+
+  &--success-bold {
+    background-color: $success-green;
+    background: linear-gradient(
+      135deg,
+      $success-green 0%,
+      $success-green 30%,
+      lighten($success-green, 20%) 100%
+    );
+    color: #fff;
+    border: 1px solid $success-green;
+  }
+
+  &--success-light {
+    color: $success-green;
+    border: 1px solid $success-green;
+  }
+
+  &--cian-light {
+    color: $pallete-2;
+    border: 1px solid $pallete-2;
+  }
+
+  &--yellow {
+    color: #fff;
+    background-color: $pallete-2;
+
+    border: 2px solid darken($color: $pallete-2, $amount: 20%);
+  }
+
+  &--grey {
+    background-color: rgb(151, 151, 151);
+    border: 2px solid rgb(73, 73, 73);
+  }
+}
