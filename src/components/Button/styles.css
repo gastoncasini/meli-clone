@@ -9,11 +9,15 @@
   font-size: 1em;
   text-transform: uppercase;
   margin: 0.5rem;
-  min-width: 80%; }
+  width: 80%;
+  max-width: 20rem;
+  min-width: 3rem; }
   .button--small {
     padding: 0.25rem;
     font-size: 0.75rem;
-    min-width: unset; }
+    width: initial;
+    min-width: unset;
+    max-width: unset; }
   .button--medium {
     padding: 0.5rem 1rem;
     font-size: 1rem;

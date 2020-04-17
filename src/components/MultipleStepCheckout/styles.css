@@ -1,57 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Baloo+Paaji+2:400,800&display=swap");
-/*progressbar*/
-.progressbar {
-  margin-bottom: 30px;
-  overflow: hidden;
-  /*CSS counters to number the steps*/
-  counter-reset: step; }
-
-.progressbar li {
-  list-style-type: none;
-  color: #8d8d8d;
-  text-transform: uppercase;
-  font-size: 9px;
-  width: 33.33%;
-  float: left;
-  position: relative;
-  text-align: center; }
-
-.progressbar li:before {
-  content: counter(step);
-  counter-increment: step;
-  width: 20px;
-  line-height: 20px;
-  display: block;
-  font-size: 10px;
-  color: #333333;
-  background: white;
-  border-radius: 3px;
-  margin: 0 auto 5px auto;
-  position: relative;
-  text-align: center;
-  z-index: 1;
-  /*put it in front of the connectors*/ }
-
-/*progressbar connectors*/
-.progressbar li:after {
-  content: "";
-  width: 100%;
-  height: 2px;
-  background: white;
-  position: absolute;
-  left: -50%;
-  top: 9px; }
-
-.progressbar li:first-child:after {
-  /*connector not needed before the first step*/
-  content: none; }
-
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-.progressbar li.active:before,
-.progressbar li.active:after {
-  background: #27ae60;
-  color: white; }
+@media (min-width: 899px) {
+  .item-list {
+    width: 50%; } }
 
 .item-list__item {
   display: flex;
@@ -74,47 +24,46 @@
     flex-flow: row nowrap;
     justify-content: space-between; }
 
-.info-block {
-  width: 100%;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: #747474; }
-  .info-block__title--small {
-    font-size: 0.9rem; }
-  .info-block__title--bold {
-    font-weight: bold; }
-  .info-block__field-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; }
-    .info-block__field-container--dark {
-      color: #202020; }
-  .info-block hr {
+.info {
+  width: 100%; }
+  @media (min-width: 899px) {
+    .info {
+      width: 50%; } }
+  .info__block {
+    width: 100%;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #747474; }
+    .info__block__title--small {
+      font-size: 0.9rem; }
+    .info__block__title--bold {
+      font-weight: bold; }
+    .info__block__field-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; }
+      .info__block__field-container--dark {
+        color: #202020; }
+  .info hr {
     border: 1px solid #747474;
     border-top: none; }
-
-.controls {
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly; }
-  .controls__button {
-    display: block;
-    border-radius: 0.25rem;
-    font-size: 1.1rem;
-    cursor: pointer;
-    padding: 0.35rem 1rem;
-    background-color: #27ae60;
-    color: #fff; }
 
 .ms-checkout {
   margin: 0 0 2rem 0;
   width: 100%;
   display: grid;
-  overflow-x: hidden; }
+  justify-content: center;
+  overflow-x: hidden;
+  position: relative; }
+  @media (min-width: 899px) {
+    .ms-checkout {
+      margin: 0 auto;
+      grid-template-columns: 900px; } }
   .ms-checkout__button-container {
     position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     background-color: #fff;
     width: 100%;
     padding: 0.125rem 0;
@@ -123,7 +72,8 @@
     align-items: center;
     box-shadow: 0px -8px 32px -21px rgba(0, 0, 0, 0.75); }
   .ms-checkout__header {
-    margin: 1rem;
+    margin: 1rem auto;
+    margin-bottom: 0;
     text-align: center;
     max-width: 450px;
     min-width: 250px; }
@@ -134,7 +84,17 @@
     font-size: 1rem; }
   .ms-checkout__step {
     grid-column: 1;
-    grid-row: 2; }
+    grid-row: 2;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center; }
+    @media (min-width: 899px) {
+      .ms-checkout__step--2-cols {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: flex-start; } }
     .ms-checkout__step--empty {
       display: flex;
       flex-flow: column nowrap;

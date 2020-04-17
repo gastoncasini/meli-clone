@@ -10,12 +10,17 @@
   font-size: 1em;
   text-transform: uppercase;
   margin: 0.5rem;
-  min-width: 80%;
+  width: 80%;
+
+  max-width: 20rem;
+  min-width: 3rem;
 
   &--small {
     padding: 0.25rem;
     font-size: 0.75rem;
+    width: initial;
     min-width: unset;
+    max-width: unset;
   }
   &--medium {
     padding: 0.5rem 1rem;

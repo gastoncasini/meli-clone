@@ -1,60 +1,10 @@
 @import "../../scss/partials/global";
 
-/*progressbar*/
-.progressbar {
-  margin-bottom: 30px;
-  overflow: hidden;
-  /*CSS counters to number the steps*/
-  counter-reset: step;
-}
-.progressbar li {
-  list-style-type: none;
-  color: rgb(141, 141, 141);
-  text-transform: uppercase;
-  font-size: 9px;
-  width: 33.33%;
-  float: left;
-  position: relative;
-  text-align: center;
-}
-.progressbar li:before {
-  content: counter(step);
-  counter-increment: step;
-  width: 20px;
-  line-height: 20px;
-  display: block;
-  font-size: 10px;
-  color: rgb(51, 51, 51);
-  background: rgb(255, 255, 255);
-  border-radius: 3px;
-  margin: 0 auto 5px auto;
-  position: relative;
-  text-align: center;
-  z-index: 1; /*put it in front of the connectors*/
-}
-/*progressbar connectors*/
-.progressbar li:after {
-  content: "";
-  width: 100%;
-  height: 2px;
-  background: white;
-  position: absolute;
-  left: -50%;
-  top: 9px;
-}
-.progressbar li:first-child:after {
-  /*connector not needed before the first step*/
-  content: none;
-}
-/*marking active/completed steps green*/
-/*The number of the step and the connector before it = green*/
-.progressbar li.active:before,
-.progressbar li.active:after {
-  background: #27ae60;
-  color: white;
-}
-
 .item-list {
+  @include big-screens {
+    width: 50%;
+  }
+
   &__item {
     display: flex;
     width: 100%;
@@ -84,28 +34,34 @@
   }
 }
 
-.info-block {
+.info {
   width: 100%;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: rgb(116, 116, 116);
-
-  &__title {
-    &--small {
-      font-size: 0.9rem;
-    }
-    &--bold {
-      font-weight: bold;
-    }
+  @include big-screens {
+    width: 50%;
   }
+  &__block {
+    width: 100%;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: rgb(116, 116, 116);
 
-  &__field-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    &__title {
+      &--small {
+        font-size: 0.9rem;
+      }
+      &--bold {
+        font-weight: bold;
+      }
+    }
 
-    &--dark {
-      color: rgb(32, 32, 32);
+    &__field-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &--dark {
+        color: rgb(32, 32, 32);
+      }
     }
   }
 
@@ -115,28 +71,25 @@
   }
 }
 
-.controls {
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-  &__button {
-    @include btn;
-    padding: 0.35rem 1rem;
-    background-color: #27ae60;
-    color: #fff;
-  }
-}
-
 .ms-checkout {
   margin: 0 0 2rem 0;
   width: 100%;
   display: grid;
+
+  justify-content: center;
+
   overflow-x: hidden;
+  position: relative;
+  @include big-screens {
+    margin: 0 auto;
+    grid-template-columns: 900px;
+  }
 
   &__button-container {
     position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     background-color: #fff;
     width: 100%;
     padding: 0.125rem 0;
@@ -147,7 +100,8 @@
   }
 
   &__header {
-    margin: 1rem;
+    margin: 1rem auto;
+    margin-bottom: 0;
     text-align: center;
     max-width: 450px;
     min-width: 250px;
@@ -164,6 +118,19 @@
   &__step {
     grid-column: 1;
     grid-row: 2;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    &--2-cols {
+      @include big-screens {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: flex-start;
+      }
+    }
 
     &--empty {
       display: flex;
@@ -174,6 +141,7 @@
       grid-row: 1;
     }
 
+    // animations classes
     &--hidden {
       display: none;
     }

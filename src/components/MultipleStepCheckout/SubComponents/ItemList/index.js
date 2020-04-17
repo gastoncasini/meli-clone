@@ -70,6 +70,7 @@ function Delivery() {
   const customStyles = {
     content: {
       width: "90%",
+      maxWidth: "500px",
       top: "50%",
       left: "50%",
       right: "auto",
@@ -95,13 +96,13 @@ function Delivery() {
           saveChanges={toggleModal}
         />
       </Modal>
-      <div className="info-block">
-        <div className="info-block__field-container info-block__field-container--dark">
-          <h2 className="info-block__title info-block__title--small info-block__title--bold">
+      <div className="info__block">
+        <div className="info__block__field-container info__block__field-container--dark">
+          <h2 className="info__block__title info__block__title--small info__block__title--bold">
             Envio
           </h2>
 
-          <div className="info-block__edit-btn">
+          <div className="info__block__edit-btn">
             <Button
               className="button--cian-lighter button--small button--lowercase"
               innnerHTML="edit"
@@ -110,17 +111,17 @@ function Delivery() {
           </div>
         </div>
 
-        <div className="info-block__field-container">
-          <p className="info-block__field">Gaston Casini</p>
+        <div className="info__block__field-container">
+          <p className="info__block__field">Gaston Casini</p>
         </div>
 
-        <div className="info-block__field-container">
-          <p className="info-block__field">
+        <div className="info__block__field-container">
+          <p className="info__block__field">
             {`${address.street} ${address.streetNumber} (CP ${address.zipCode}) `}{" "}
           </p>
         </div>
-        <div className="info-block__field-container">
-          <p className="info-block__field">{`${address.locallity} - AR`} </p>
+        <div className="info__block__field-container">
+          <p className="info__block__field">{`${address.locallity} - AR`} </p>
         </div>
       </div>
     </>
@@ -129,25 +130,29 @@ function Delivery() {
 
 function Total({ items, total }) {
   return (
-    <Card>
-      <Delivery />
-      <hr />
-      <div className="info-block">
-        {items.map(({ item, quantity }) => (
-          <div className="info-block__field-container">
-            <p className="info-block__field">{`${item.name} x ${quantity}`}</p>
-
-            <p className="info-block__value">{`$ ${item.price * quantity}`}</p>
-          </div>
-        ))}
-
+    <div className="info">
+      <Card>
+        <Delivery />
         <hr />
-        <div className="info-block__field-container info-block__field-container--dark">
-          <h2 className="info-block__field">Total:</h2>
-          <p className="info-block__value">{`$ ${total}`}</p>
+        <div className="info__block">
+          {items.map(({ item, quantity }) => (
+            <div className="info__block__field-container">
+              <p className="info__block__field">{`${item.name} x ${quantity}`}</p>
+
+              <p className="info__block__value">{`$ ${
+                item.price * quantity
+              }`}</p>
+            </div>
+          ))}
+
+          <hr />
+          <div className="info__block__field-container info__block__field-container--dark">
+            <h2 className="info__block__field">Total:</h2>
+            <p className="info__block__value">{`$ ${total}`}</p>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </div>
   );
 }
 

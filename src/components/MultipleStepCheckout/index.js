@@ -191,7 +191,7 @@ function MultipleStepCheckout({ order }) {
           clickHandler={prevStep}
         />
       </header>
-      <div className={class1}>
+      <div className={class1 + " ms-checkout__step--2-cols"}>
         <ItemListWithTotal />
       </div>
       <div className={class2}>

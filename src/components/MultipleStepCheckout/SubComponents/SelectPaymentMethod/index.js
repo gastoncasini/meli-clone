@@ -5,11 +5,19 @@ import Card from "../../../Card";
 import InputBlock, { DoubleInputContainer } from "../../../InputBlock";
 function SelectPaymentMethod({ data, handleChange, total }) {
   total = total ? total : 0.0;
+  let totalStyles = {
+    width: "100%",
+    maxWidth: "450px",
+    minWidth: "250px",
+  };
+
   return (
     <>
-      <Card>
-        <h1>{`$ ${total}`}</h1>
-      </Card>
+      <div style={totalStyles}>
+        <Card>
+          <h1>{`$ ${total}`}</h1>
+        </Card>
+      </div>
       <Card>
         <p>Tarjeta de Credito/Debito</p>
         <fieldset onChange={handleChange}>

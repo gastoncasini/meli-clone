@@ -11,7 +11,7 @@ $discount-green: rgb(17, 169, 139);
 $font: "Baloo Paaji 2", cursive;
 // mixins
 @mixin big-screens {
-  @media (min-width: 499px) {
+  @media (min-width: 899px) {
     @content;
   }
 }
