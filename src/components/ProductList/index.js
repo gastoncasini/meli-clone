@@ -2,17 +2,21 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { fetchProductsAction } from "../../redux/productsDuck";
 import LinkCard from "../LinkCard";
-import "./styles.css";
-
+/* import "./styles.css";
+ */
 function renderProducts(prods) {
   return prods.map((prod, i) => {
-    return <LinkCard key={i} {...prod} />;
+    return (
+      <li className="catalog__item">
+        <LinkCard key={i} {...prod} />
+      </li>
+    );
   });
 }
 
-function Catalog({ products, fetching, fetchProductsAction }) {
+function ProductList({ products, fetching, fetchProductsAction }) {
   function fetchProducts() {
-    fetchProductsAction(5);
+    fetchProductsAction(15);
   }
 
   useEffect(() => {
@@ -25,23 +29,14 @@ function Catalog({ products, fetching, fetchProductsAction }) {
     return <h1>...CARGANDO</h1>;
   }
 
-  return (
-    <div className="catalog">
-      <h2>Products</h2>
-      {renderProducts(products)}
-
-      <button className={"btn-fetch"} onClick={fetchProducts}>
-        Load more
-      </button>
-    </div>
-  );
+  return <ul className="catalog__container">{renderProducts(products)}</ul>;
 }
 
 function mapStateToProps({ products }) {
   return {
     fetching: products.fetching,
-    products: products.productsList
+    products: products.productsList,
   };
 }
 
-export default connect(mapStateToProps, { fetchProductsAction })(Catalog);
+export default connect(mapStateToProps, { fetchProductsAction })(ProductList);

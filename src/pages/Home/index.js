@@ -1,5 +1,5 @@
 import React from "react";
-import Catalog from "../../components/Catalog";
+import ProductList from "../../components/ProductList";
 import NavBar from "../../components/NavBar";
 import "./styles.css";
 
@@ -12,7 +12,7 @@ export default function Home() {
         <h1 className="banner__title">Header Title</h1>
       </div>
 
-      <Catalog />
+      <ProductList />
     </>
   );
 }

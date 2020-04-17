@@ -1,0 +1,29 @@
+.title {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.catalog {
+  display: flex;
+  flex-flow: row wrap;
+
+  &__title {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__container {
+    display: flex;
+    flex-flow: row wrap;
+    width: 55rem;
+  }
+
+  &__item {
+    flex-grow: 1;
+    width: 33.3%;
+  }
+
+  &__filter {
+    width: 30%;
+  }
+}

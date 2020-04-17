@@ -1,0 +1,19 @@
+.title {
+  margin: 0 auto;
+  text-align: center; }
+
+.catalog {
+  display: flex;
+  flex-flow: row wrap; }
+  .catalog__title {
+    width: 100%;
+    text-align: center; }
+  .catalog__container {
+    display: flex;
+    flex-flow: row wrap;
+    width: 55rem; }
+  .catalog__item {
+    flex-grow: 1;
+    width: 33.3%; }
+  .catalog__filter {
+    width: 30%; }
