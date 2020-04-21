@@ -1,29 +1,80 @@
+@import "../../scss/partials/global";
 .title {
   margin: 0 auto;
   text-align: center;
 }
 
 .catalog {
-  display: flex;
-  flex-flow: row wrap;
+  @include big-screens {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+  }
+
+  // product list styles
+  &__container {
+    display: flex;
+    flex-flow: row wrap;
+    @include big-screens {
+      min-width: 55rem;
+      max-width: 60rem;
+    }
+  }
+
+  &__item {
+    width: 100%;
+    flex-grow: 1;
+    @include big-screens {
+      width: 33.3%;
+    }
+  }
+
+  // catalog header & filter styles
 
   &__title {
     width: 100%;
     text-align: center;
   }
 
-  &__container {
+  &__filter {
+    width: 100%;
+    max-width: 300px;
+    margin: 1rem 1rem 0 1rem;
+    box-sizing: border-box;
+    @include big-screens {
+      min-width: 300px;
+    }
+  }
+
+  &__header {
+    width: 100%;
+    &__info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @include big-screens {
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  &__toggle-mobile-filter {
+    @include big-screens {
+      display: none;
+    }
+  }
+
+  &__search-criteria {
     display: flex;
     flex-flow: row wrap;
-    width: 55rem;
-  }
+    width: 100%;
 
-  &__item {
-    flex-grow: 1;
-    width: 33.3%;
-  }
-
-  &__filter {
-    width: 30%;
+    &__item {
+      background-color: #fff;
+      margin: 0.5rem;
+      padding: 0.5rem;
+      font-size: 0.75rem;
+    }
   }
 }

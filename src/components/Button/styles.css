@@ -12,6 +12,13 @@
   width: 80%;
   max-width: 20rem;
   min-width: 3rem; }
+  .button--close {
+    padding: 0 0.25rem;
+    border: none;
+    width: 1rem;
+    min-width: unset;
+    max-width: unset;
+    margin: 0; }
   .button--small {
     padding: 0.25rem;
     font-size: 0.75rem;
@@ -21,7 +28,10 @@
   .button--medium {
     padding: 0.5rem 1rem;
     font-size: 1rem;
-    min-width: 100px; }
+    min-width: 100px;
+    max-width: 150px; }
+  .button--right {
+    text-align: right; }
   .button--capitalize {
     text-transform: capitalize;
     font-weight: bold; }
@@ -55,3 +65,9 @@
   .button--grey {
     background-color: #979797;
     border: 2px solid #494949; }
+  .button--white {
+    background-color: #fff;
+    border: none;
+    text-transform: capitalize; }
+  .button--square {
+    border-radius: 0; }

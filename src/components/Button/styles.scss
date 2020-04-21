@@ -15,6 +15,15 @@
   max-width: 20rem;
   min-width: 3rem;
 
+  &--close {
+    padding: 0 0.25rem;
+    border: none;
+    width: 1rem;
+    min-width: unset;
+    max-width: unset;
+    margin: 0;
+  }
+
   &--small {
     padding: 0.25rem;
     font-size: 0.75rem;
@@ -26,6 +35,11 @@
     padding: 0.5rem 1rem;
     font-size: 1rem;
     min-width: 100px;
+    max-width: 150px;
+  }
+
+  &--right {
+    text-align: right;
   }
 
   &--capitalize {
@@ -80,5 +94,14 @@
   &--grey {
     background-color: rgb(151, 151, 151);
     border: 2px solid rgb(73, 73, 73);
+  }
+
+  &--white {
+    background-color: #fff;
+    border: none;
+    text-transform: capitalize;
+  }
+  &--square {
+    border-radius: 0;
   }
 }

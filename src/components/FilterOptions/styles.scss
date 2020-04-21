@@ -1,0 +1,73 @@
+@import "../../scss/partials/global";
+.filter {
+  &--active {
+    transform: translateX(0);
+  }
+  transition: 0.6s;
+  transform: translateX(-100%);
+  box-shadow: 10px 10px 30px -10px rgba(0, 0, 0, 0.75);
+  position: fixed;
+  z-index: 10;
+  background: #fff;
+  height: 100vh;
+  width: 70vw;
+  top: 0px;
+  left: 0;
+  overflow-x: scroll;
+  // desktop styles
+  @include big-screens {
+    overflow: hidden;
+    position: relative;
+    width: unset;
+    transform: translateX(0);
+    background-color: unset;
+    box-shadow: none;
+  }
+
+  &__header {
+    padding: 0.5rem;
+
+    // desktop styles
+    @include big-screens {
+      display: none;
+    }
+  }
+
+  &__options {
+    &__item {
+      border-bottom: 1px solid;
+      padding: 1rem;
+
+      // desktop styles
+      @include big-screens {
+        border: none;
+        font-weight: bold;
+        color: rgb(39, 36, 36);
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  &__option-list {
+    &--inactive {
+      display: none;
+      // desktop styles
+      @include big-screens {
+        display: block;
+      }
+    }
+
+    &--active {
+      display: block;
+    }
+
+    &__item {
+      cursor: pointer;
+
+      // desktop styles
+      @include big-screens {
+        font-weight: normal;
+      }
+    }
+  }
+}
