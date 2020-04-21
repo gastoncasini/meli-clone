@@ -186,7 +186,7 @@ function MultipleStepCheckout({ order }) {
       <header className="ms-checkout__header">
         <h2 className="ms-checkout__subtitle">{stepTitle}</h2>
         <Button
-          innnerHTML="volver atras"
+          innerHTML="volver atras"
           className="button--small button--cian-light button--lowercase"
           clickHandler={prevStep}
         />
@@ -199,7 +199,7 @@ function MultipleStepCheckout({ order }) {
       </div>
       <div className="ms-checkout__button-container">
         <Button
-          innnerHTML={bottomButtonTxt}
+          innerHTML={bottomButtonTxt}
           clickHandler={currentStep === 2 ? ProcessPayment : nextStep}
           className={"button--success-bold button--capitalize"}
         />

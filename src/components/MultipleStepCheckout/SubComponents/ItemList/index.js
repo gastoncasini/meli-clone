@@ -105,7 +105,7 @@ function Delivery() {
           <div className="info__block__edit-btn">
             <Button
               className="button--cian-lighter button--small button--lowercase"
-              innnerHTML="edit"
+              innerHTML="edit"
               clickHandler={toggleModal}
             />
           </div>

@@ -25,12 +25,12 @@ export function SetDeliveryAddress({
       <div style={containerStyles}>
         <Button
           clickHandler={cancel}
-          innnerHTML="cancelar"
+          innerHTML="cancelar"
           className={"button--medium button--cian-light button--lowercase"}
         />
         <Button
           clickHandler={saveChanges}
-          innnerHTML="guardar"
+          innerHTML="guardar"
           className={"button--medium button--lowercase button--cian"}
         />
       </div>

@@ -63,7 +63,7 @@ function LoginModule({ doLoginAction, error }) {
         login
       </button> */}
         <Button
-          innnerHTML="logout"
+          innerHTML="logout"
           clickHandler={login}
           className={"button--yellow"}
         />
@@ -86,7 +86,7 @@ function LoginPage({ loggedIn, user, doLogoutAction, ...rest }) {
           {/* <button className={"button button--grey"} onClick={logout}>
             Logout
           </button> */}
-          <Button innnerHTML="logout" clickHandler={logout} />
+          <Button innerHTML="logout" clickHandler={logout} />
         </div>
       </Card>
     );
