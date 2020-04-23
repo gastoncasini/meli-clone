@@ -16,12 +16,12 @@ function randomDiscount() {
 
 // devuelve un array con objetos populados con datos de productos falsos
 
-function fakeProductData(quantity) {
+function fakeProductData(quantity, filters) {
   const vendor = () => {
     return {
       name: faker.company.companyName(),
       slogan: faker.company.catchPhrase(),
-      logo: "https://via.placeholder.com/258x240"
+      logo: "https://via.placeholder.com/258x240",
     };
   };
 
@@ -30,15 +30,15 @@ function fakeProductData(quantity) {
       {
         ques: {
           user: faker.internet.userName(),
-          content: faker.lorem.lines(1)
+          content: faker.lorem.lines(1),
         },
 
-        ans: faker.lorem.lines(1)
-      }
+        ans: faker.lorem.lines(1),
+      },
     ];
   };
 
-  const product = element => {
+  const product = (element) => {
     return {
       id: uuidv4(),
       name: faker.commerce.productName(),
@@ -47,7 +47,7 @@ function fakeProductData(quantity) {
       discount: randomBool() ? randomDiscount() : null,
       location: faker.address.city(),
       vendor: vendor(),
-      questions: questions()
+      questions: questions(),
     };
   };
 
@@ -66,7 +66,19 @@ function fakeProductData(quantity) {
 
 // constants
 const initialData = {
-  productsList: []
+  productsList: [],
+  filters: [
+    {
+      filterText: "bicicletas",
+      filterType: "search",
+    },
+  ],
+  filterCriteria: [
+    "envio gratis",
+    ["condicion", ["nuevo", "usado"]],
+    ["categoria", ["alimentos", "moda e indumentaria", "hogar"]],
+    ["precio", ["hasta $ 2000", "desde $ 2000 hasta $ 5000", "hasta $ 5000"]],
+  ],
 };
 
 // fetch multiple products
@@ -78,6 +90,9 @@ const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
 const GET_PRODUCT_BY_ID_SUCCESS = "GET_PRODUCT_BY_ID_SUCCESS";
 const GET_PRODUCT_BY_ID_ERROR = "GET_PRODUCT_BY_ID_ERROR";
 
+// set filters
+const UPDATE_FILTERS = "UPDATE_FILTERS";
+
 // reducer
 
 export default function reducer(state = initialData, action) {
@@ -88,7 +103,7 @@ export default function reducer(state = initialData, action) {
       return {
         ...state,
         fetching: false,
-        productsList: state.productsList.concat(action.payload)
+        productsList: action.payload,
       };
     case GET_PRODUCTS_ERROR:
       return { ...state, fetching: false, error: action.payload };
@@ -100,11 +115,14 @@ export default function reducer(state = initialData, action) {
       return {
         ...state,
         fetching: false,
-        selectedItem: action.payload
+        selectedItem: action.payload,
       };
 
     case GET_PRODUCT_BY_ID_ERROR:
       return { ...state, fetching: false, error: action.payload };
+
+    case UPDATE_FILTERS:
+      return { ...state, filters: action.payload };
 
     default:
       return state;
@@ -113,54 +131,91 @@ export default function reducer(state = initialData, action) {
 
 // actions
 
-export let fetchItemAction = itemID => dispatch => {
+export let fetchItemAction = (itemID) => (dispatch) => {
   dispatch({
-    type: GET_PRODUCT_BY_ID
+    type: GET_PRODUCT_BY_ID,
   });
 
   fakeProductData()
-    .then(products => {
+    .then((products) => {
       dispatch({
         type: GET_PRODUCT_BY_ID_SUCCESS,
-        payload: products[0]
+        payload: products[0],
       });
     })
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
       dispatch({
         type: GET_PRODUCT_BY_ID_ERROR,
-        error
+        error,
       });
     });
 };
 
-export let fetchProductsAction = numberOfProduts => dispatch => {
+export let fetchProductsAction = (numberOfProduts) => (dispatch, getState) => {
+  let { filters } = getState().products;
+  console.log(filters);
   dispatch({
-    type: GET_PRODUCTS
+    type: GET_PRODUCTS,
   });
 
-  fakeProductData(numberOfProduts)
-    .then(products =>
+  fakeProductData(numberOfProduts, filters)
+    .then((products) =>
       dispatch({
         type: GET_PRODUCTS_SUCCESS,
-        payload: [...products]
+        payload: [...products],
       })
     )
-    .catch(error => {
+    .catch((error) => {
       console.log(error);
       dispatch({
         type: GET_PRODUCTS_ERROR,
-        payload: { error }
+        payload: { error },
       });
     });
 };
 
-export let selectItemAction = itemID => (dispatch, getState) => {
+export let selectItemAction = (itemID) => (dispatch, getState) => {
   let { productsList } = getState().products;
-  let selectedItem = productsList.filter(product => product.id === itemID)[0];
+  let selectedItem = productsList.filter((product) => product.id === itemID)[0];
 
   dispatch({
     type: GET_PRODUCT_BY_ID_SUCCESS,
-    payload: selectedItem
+    payload: selectedItem,
   });
+};
+
+export let addFilterAction = (filter) => (dispatch, getState) => {
+  let { filters } = getState().products;
+  let existsFilter = null;
+  let newFilters = filters.map((item) => {
+    if (item.filterType === filter.filterType) {
+      existsFilter = true;
+      return filter;
+    }
+
+    return item;
+  });
+  if (!existsFilter) {
+    newFilters = filters.concat(filter);
+  }
+
+  dispatch({
+    type: UPDATE_FILTERS,
+    payload: newFilters,
+  });
+
+  fetchProductsAction(15)(dispatch, getState);
+};
+
+export let removeFilterAction = (filter) => (dispatch, getState) => {
+  let { filters } = getState().products;
+  let newFilters = filters.filter((item) => item.filterText !== filter);
+
+  dispatch({
+    type: UPDATE_FILTERS,
+    payload: newFilters,
+  });
+
+  fetchProductsAction(15)(dispatch, getState);
 };

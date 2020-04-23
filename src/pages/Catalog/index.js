@@ -1,19 +1,32 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { removeFilterAction } from "../../redux/productsDuck";
 import ProductList from "../../components/ProductList";
 import NavBar from "../../components/NavBar";
 import Button from "../../components/Button";
 import FilterOptions from "../../components/FilterOptions";
 import "./styles.css";
 
-export default function Catalog({ filters }) {
+function Catalog({ filters, removeFilterAction }) {
   let [filter, setFilter] = useState(false);
   filters = filters ? filters : ["criterio", "criterio", "criterio"];
+
+  function removeFilter(e) {
+    let selectedFilter = e.target.parentElement.childNodes[0].data;
+
+    removeFilterAction(selectedFilter);
+  }
 
   function renderFilters(filters) {
     return filters.map((item) => {
       return (
         <li className="catalog__search-criteria__item">
-          {item} <Button innerHTML="x" className="button--close" />
+          {item.filterText}
+          <Button
+            innerHTML="x"
+            className="button--close"
+            clickHandler={removeFilter}
+          />
         </li>
       );
     });
@@ -24,10 +37,12 @@ export default function Catalog({ filters }) {
   }
 
   function closeFilter(e) {
-    console.log(e.target.innerHTML);
     if (e.target.innerHTML === "filtrar") {
       return;
     }
+
+    // clicking on filter sublists wont close the menu
+    // sublist and its parent has setted id atribute
     let id = e.target.id ? e.target.id : e.target.parentElement.id;
     if (id) {
       return;
@@ -63,3 +78,9 @@ export default function Catalog({ filters }) {
     </>
   );
 }
+
+function mapStateToProps({ products }) {
+  return { filters: products.filters };
+}
+
+export default connect(mapStateToProps, { removeFilterAction })(Catalog);
