@@ -11,8 +11,6 @@ export default function Home() {
       <div className="banner">
         <h1 className="banner__title">Header Title</h1>
       </div>
-
-      <ProductList />
     </>
   );
 }
