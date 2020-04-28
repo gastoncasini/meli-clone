@@ -1,0 +1,204 @@
+@import url("https://fonts.googleapis.com/css?family=Baloo+Paaji+2:400,800&display=swap");
+.visuallyhidden {
+  position: absolute;
+  top: auto;
+  left: -1000px; }
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow-x: hidden; }
+  .carousel:hover .next-button {
+    display: block; }
+  .carousel:hover .prev-button {
+    display: block; }
+
+.slides-container {
+  transition: 0.5s;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 300%;
+  min-height: 200px;
+  overflow-x: hidden !important; }
+  @media (min-width: 899px) {
+    .slides-container {
+      height: 25rem; } }
+
+.next-button {
+  position: absolute;
+  background-color: #fff;
+  cursor: pointer;
+  display: none;
+  transition: box-shadow 0.1s ease-out;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.19);
+  transition: box-shadow 0.2s;
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+  right: 0;
+  height: 64px;
+  margin-top: -40px;
+  top: 50%;
+  width: 40px; }
+  .next-button:hover {
+    box-shadow: 0 7px 16px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1); }
+  @media (min-width: 899px) {
+    .next-button {
+      height: 80px;
+      margin-top: -40px;
+      width: 40px; } }
+  .next-button::after {
+    content: "";
+    display: block;
+    width: 14px;
+    height: 2px;
+    background: #3483fa;
+    position: absolute;
+    transform: rotate(-45deg);
+    bottom: 50%;
+    margin-bottom: -6px;
+    left: 50%;
+    margin-left: -6px; }
+  .next-button::before {
+    content: "";
+    display: block;
+    width: 14px;
+    height: 2px;
+    background: #3483fa;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -5px;
+    left: 50%;
+    margin-left: -6px; }
+
+.prev-button {
+  position: absolute;
+  background-color: #fff;
+  cursor: pointer;
+  display: none;
+  transition: box-shadow 0.1s ease-out;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.19);
+  transition: box-shadow 0.2s;
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+  left: 0;
+  height: 64px;
+  margin-top: -40px;
+  top: 50%;
+  width: 40px; }
+  @media (min-width: 899px) {
+    .prev-button {
+      height: 80px;
+      margin-top: -40px;
+      width: 40px; } }
+  .prev-button:hover {
+    box-shadow: 0 7px 16px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.1); }
+  .prev-button::after {
+    content: "";
+    display: block;
+    width: 14px;
+    height: 2px;
+    background: #3483fa;
+    position: absolute;
+    transform: rotate(45deg);
+    bottom: 50%;
+    margin-bottom: -6px;
+    left: 50%;
+    margin-left: -8px; }
+  .prev-button::before {
+    content: "";
+    display: block;
+    width: 14px;
+    height: 2px;
+    background: #3483fa;
+    position: absolute;
+    transform: rotate(-45deg);
+    top: 50%;
+    margin-top: -5px;
+    left: 50%;
+    margin-left: -8px;
+    cursor: pointer; }
+
+.slide {
+  width: 100%;
+  font-size: 0.8rem; }
+  @media (min-width: 899px) {
+    .slide {
+      font-size: 1.1rem; } }
+  .slide:nth-child(1) {
+    background: #f0f0f0;
+    background: url("./laptop-big.png"), radial-gradient(circle, #f0f0f0 74%, #dad8d7 100%);
+    background-repeat: no-repeat;
+    background-size: 60%, 100%;
+    background-position: 100%, center; }
+    @media (min-width: 899px) {
+      .slide:nth-child(1) {
+        background: url("./laptop-big.png"), radial-gradient(circle, #f0f0f0 74%, #dad8d7 100%);
+        background-size: 30%, cover;
+        background-repeat: no-repeat;
+        background-position: 70%, center; } }
+    .slide:nth-child(1) article {
+      position: relative;
+      top: 20%;
+      left: 5%; }
+      @media (min-width: 899px) {
+        .slide:nth-child(1) article {
+          top: 100px;
+          left: 400px; } }
+  .slide:nth-child(2) {
+    position: relative;
+    background: #fef7b2;
+    background: url("./plants.png"), radial-gradient(circle, #fef7b2 0%, #fff593 89%);
+    background-repeat: no-repeat;
+    background-size: 50%, 100%;
+    background-position: 30%, center; }
+    .slide:nth-child(2) article {
+      position: relative;
+      left: -15%;
+      top: 15%;
+      text-align: right; }
+      @media (min-width: 899px) {
+        .slide:nth-child(2) article {
+          top: 100px;
+          left: 800px;
+          text-align: unset; } }
+  .slide:nth-child(3) {
+    background: #f0f0f0;
+    background: url("./moto.png"), radial-gradient(circle, #f0f0f0 74%, #dad8d7 100%);
+    background-repeat: no-repeat;
+    background-size: 50%, 100%;
+    background-position: 70%, center;
+    position: relative; }
+    .slide:nth-child(3) article {
+      position: relative;
+      top: 10%;
+      left: 5%; }
+      @media (min-width: 899px) {
+        .slide:nth-child(3) article {
+          top: 100px;
+          left: 300px; } }
+
+.slidenav {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 5rem;
+  height: 1rem;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around; }
+  .slidenav__item button {
+    height: 0.4rem;
+    width: 0.4rem;
+    border-radius: 50%;
+    background-color: #b3b3b3;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease-in-out;
+    cursor: pointer; }
+  .slidenav__item--current button {
+    background-color: #c6c6c6;
+    width: 0.6rem;
+    height: 0.6rem; }
